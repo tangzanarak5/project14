@@ -1,0 +1,5 @@
+<StackLayout class="Cloud-Light">
+    <Label text = "ตรวจสอบการลงทะเบียน" class="labelTitle sizeFontTitle fontBlack"></Label>
+    <TextField keyboardType = "number" [(ngModel)]="checkHn.idCard" hint="หมายเลขบัตรประชาชน" class="sizeInput sizeFont" maxLength="13"></TextField>
+    <Button class="btn btn-primary Button sizeFont Cloud-Light" text = "ตรวจสอบ" (tap)="checkIdCard()"></Button>
+</StackLayout>

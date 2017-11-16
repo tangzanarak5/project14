@@ -1,0 +1,81 @@
+<Page>
+    <Scrollview>
+
+<StackLayout class="">
+    
+        <StackLayout class="bg">
+                <label text=""></label>
+                <label class = "Cloud-Light setLabel title" text="ภูเบศรแคร์" style="color: white;"></label>
+                <label text=""></label>
+                <label class = "Cloud-Light setLabel" [text]="hospitalnumber" style="color: white;"></label>
+                <label class = "Cloud-Light setLabel" [text]="nameAndsurname" style="color: white;"></label>
+                <label class = "Cloud-Light setLabel" [text]="dataUser.dataset.address" style="color: white;"></label>
+                <label class = "Cloud-Light setLabel" [text]="dataUser.dataset.tel" style="color: white;"></label>
+                <Image class = "sizePicture" src="~/images/logo app.png"></Image>
+                <label text=""></label>
+                <button text="ออกจากระบบ" (tap) = "logout()"></button>
+                <label text=""></label>
+        </StackLayout>
+        
+        <label text="" class = "setSpaceLine" ></label>
+
+        <Page xmlns="http://schemas.nativescript.org/tns.xsd">
+                <WrapLayout orientation="horizontal" width="97%" height="100%" style.backgroundColor="lightgray">
+
+                        <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/blood.png" ></Image>
+                                <label text="เบาหวาน"  class = "Cloud-Light setLabelIcon" ></label>
+                        </WrapLayout>
+
+                  <label text=""  class = "setSpaceIcon"  backgroundColor="white"></label>
+
+                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/hypertension.png" ></Image>
+                                <label text="ความดัน"  class = "Cloud-Light setLabelIcon" ></label>
+                  </WrapLayout>
+
+                  <label text=""   class = "setSpaceIcon" backgroundColor="white"></label>
+
+                 <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/fat.png" ></Image>
+                                <label text="ไขมัน"  class = "Cloud-Light setFatChart" ></label>
+                  </WrapLayout>
+
+                  <label text=""  class = "setSpaceLine"  backgroundColor="white"></label>
+
+                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/drug.png" ></Image>
+                                <label text="ยา"  class = "Cloud-Light setDrug" ></label>
+                  </WrapLayout>
+
+                  <label text=""  class = "setSpaceIcon"  backgroundColor="white"></label>
+
+                <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/pay.png" ></Image>
+                                <label text="ค่าใช้จ่าย"  class = "Cloud-Light setLabelIcon" ></label>
+                  </WrapLayout>
+
+                  <label text=""   class = "setSpaceIcon" backgroundColor="white"></label>
+
+                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
+                                <label text="             "  ></label>
+                                <Image class = "setIcon" src="~/images/chart.png" ></Image>
+                                <label text="กราฟ"  class = "Cloud-Light setFatChart" ></label>
+                  </WrapLayout>
+
+                  <label text=""  class = "setSpaceLine"  backgroundColor="white"></label>
+
+                  <Image class = "setNews" src="~/images/news.png" ></Image>
+                </WrapLayout>
+              </Page>
+        
+
+</StackLayout>
+
+</Scrollview>
+</Page>
