@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes, RouterModule } from "@angular/router";
 import { loginProfileComponent } from "./loginProfile/loginProfile.component";
@@ -12,12 +12,4 @@ const routes: Routes = [
     }
 ];
 
-@NgModule({
-    imports: [
-        NativeScriptRouterModule.forChild(routes)
-    ],
-    exports: [
-        NativeScriptRouterModule
-    ]
-})
-export class LoginAcceptRouting { }
+export const FeedRouting: ModuleWithProviders = RouterModule.forChild(routes);
