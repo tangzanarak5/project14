@@ -1,5 +1,6 @@
 <Page>
         <ScrollView sdkExampleTitle sdkToggleNavButton>
+                <StackLayout class="StackBgColor">
       <StackLayout class="Cloud-Light">
     
             <StackLayout class="StackBgColor">
@@ -13,7 +14,7 @@
         <StackLayout class="StackBg">
             
                 <StackLayout class="boxBg">
-            <TextField keyboardType = "number" class = "allAroundTextField inputColor"  hint="* บ้านเลขที่" [(ngModel)] = "houseNumber"  ></TextField>
+            <TextField class = "allAroundTextField inputColor"  hint="* บ้านเลขที่" [(ngModel)] = "houseNumber"  ></TextField>
     
             <TextField class = "allAroundTextField inputColor" hint="ตรอก/ซอย" [(ngModel)] = "alley" ></TextField>
             <TextField class = "allAroundTextField inputColor" hint="ถนน" [(ngModel)] = "street" ></TextField>
@@ -40,6 +41,7 @@
                         </StackLayout>
                     </StackLayout>
             </StackLayout>
+        </StackLayout>
         </ScrollView>
         </Page>
     

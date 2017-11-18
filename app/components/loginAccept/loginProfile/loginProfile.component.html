@@ -1,81 +1,226 @@
-<Page>
-    <Scrollview>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">      
+<Scrollview>
+<StackLayout class="bg" *ngIf="isLoading">
+<WrapLayout orientation="horizontal">
 
-<StackLayout class="">
-    
-        <StackLayout class="bg">
-                <label text=""></label>
-                <label class = "Cloud-Light setLabel title" text="ภูเบศรแคร์" style="color: white;"></label>
-                <label text=""></label>
-                <label class = "Cloud-Light setLabel" [text]="hospitalnumber" style="color: white;"></label>
-                <label class = "Cloud-Light setLabel" [text]="nameAndsurname" style="color: white;"></label>
-                <label class = "Cloud-Light setLabel" [text]="dataUser.dataset.address" style="color: white;"></label>
-                <label class = "Cloud-Light setLabel" [text]="dataUser.dataset.tel" style="color: white;"></label>
-                <Image class = "sizePicture" src="~/images/logo app.png"></Image>
-                <label text=""></label>
-                <button text="ออกจากระบบ" (tap) = "logout()"></button>
-                <label text=""></label>
-        </StackLayout>
+        <WrapLayout orientation="horizontal" width="100%" class="bg">
+                <label height="40"></label>
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="20%" class="bg">
+                <Image src="~/images/logo app.png" ></Image>
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="75%" class="bg">
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label height="2"></label>
+                </WrapLayout>
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label class = "Cloud-Light" [text]="hospitalnumber" style="color: white;"></label>
+                </WrapLayout>
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label class = "Cloud-Light" [text]="nameAndsurname" style="color: white;"></label>  
+                </WrapLayout>
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label class = "Cloud-Light" [text]="gender" style="color: white;"></label>
+                        <label class = "Cloud-Light" text=" "></label>
+                        <label class = "Cloud-Light" [text]="blood" style="color: white;"></label>
+                        <label class = "Cloud-Light" text=" "></label>
+                        <label class = "Cloud-Light" [text]="dob" style="color: white;"></label>
+                </WrapLayout>
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label class = "Cloud-Light" [text]="dataUser.dataset.tel" style="color: white;"></label>
+                        <label class = "Cloud-Light" text="  "></label>
+                        <label class = "Cloud-Light" text="[ออกจากระบบ]" style="color: red;" (tap) = "logout()"></label>
+                </WrapLayout>
+
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="100%" class="bg">
+                <label height="40"></label>
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/blood.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="10%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="90%">
+                                <label class = "Cloud-Light" text="เบาหวาน"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="0.2%">
+                        <label text="" height="120" width="1" backgroundColor="lightgray"></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/hypertension.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="10%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="90%">
+                                <label class = "Cloud-Light" text="ความดัน"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="0.2%">
+                        <label text="" height="120" width="1" backgroundColor="lightgray"></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/fat.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="25%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="75%">
+                                <label class = "Cloud-Light" text="ไขมัน"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
+
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="100%">
+                        <label text="" height="0.5" width="100%" backgroundColor="lightgray"></label>
+        </WrapLayout>
+
+        <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/drug.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="40%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="60%">
+                                <label class = "Cloud-Light" text="ยา"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="0.2%">
+                        <label text="" height="120" width="150" backgroundColor="lightgray"></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/pay.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="10%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="90%">
+                                <label class = "Cloud-Light" text="ค่าใช้จ่าย"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="0.2%">
+                                <label text="" height="120" width="150" backgroundColor="lightgray"></label>
+                </WrapLayout>
+                 <WrapLayout orientation="horizontal" width="9%">
+                </WrapLayout>
+                <WrapLayout orientation="horizontal" width="15%">
+                        <label text=" "></label>
+                        <Image src="~/images/chart.png" ></Image>
+                        <WrapLayout orientation="horizontal" width="25%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="75%">
+                                <label class = "Cloud-Light" text="กราฟ"></label>
+                        </WrapLayout>
+                        <label text=" "></label>
+                </WrapLayout>
         
-        <label text="" class = "setSpaceLine" ></label>
+        </WrapLayout>
 
-        <Page xmlns="http://schemas.nativescript.org/tns.xsd">
-                <WrapLayout orientation="horizontal" width="97%" height="100%" style.backgroundColor="lightgray">
-
-                        <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/blood.png" ></Image>
-                                <label text="เบาหวาน"  class = "Cloud-Light setLabelIcon" ></label>
+        <WrapLayout orientation="horizontal" width="100%" class="bg">
+                        <label height="10"></label>
+                </WrapLayout>
+        
+                <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
+                        <WrapLayout orientation="horizontal" width="9%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="15%">
+                                <label text=" "></label>
+                                <Image src="~/images/clocks.jpg" ></Image>
+                                <WrapLayout orientation="horizontal" width="10%">
+                                </WrapLayout>
+                                <WrapLayout orientation="horizontal" width="90%">
+                                        <label class = "Cloud-Light" text="นัดหมาย"></label>
+                                </WrapLayout>
+                                <label text=" "></label>
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="9%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="0.2%">
+                                <label text="" height="120" width="1" backgroundColor="lightgray"></label>
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="9%">
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="15%">
+                                <label text=" "></label>
+                                <Image src="~/images/news.png" ></Image>
+                                <WrapLayout orientation="horizontal" width="15%">
+                                </WrapLayout>
+                                <WrapLayout orientation="horizontal" width="85%">
+                                        <label class = "Cloud-Light" text="ข่าวสาร"></label>
+                                </WrapLayout>
+                                <label text=" "></label>
+                        </WrapLayout>
+                        
+                        <WrapLayout orientation="horizontal" width="9%">
                         </WrapLayout>
 
-                  <label text=""  class = "setSpaceIcon"  backgroundColor="white"></label>
+                        <WrapLayout orientation="horizontal" width="0.2%">
+                                <label text="" height="120" width="1" backgroundColor="lightgray"></label>
+                        </WrapLayout>
 
-                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/hypertension.png" ></Image>
-                                <label text="ความดัน"  class = "Cloud-Light setLabelIcon" ></label>
-                  </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="9%" style.backgroundColor="white">
+                        </WrapLayout>
 
-                  <label text=""   class = "setSpaceIcon" backgroundColor="white"></label>
-
-                 <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/fat.png" ></Image>
-                                <label text="ไขมัน"  class = "Cloud-Light setFatChart" ></label>
-                  </WrapLayout>
-
-                  <label text=""  class = "setSpaceLine"  backgroundColor="white"></label>
-
-                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/drug.png" ></Image>
-                                <label text="ยา"  class = "Cloud-Light setDrug" ></label>
-                  </WrapLayout>
-
-                  <label text=""  class = "setSpaceIcon"  backgroundColor="white"></label>
-
-                <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/pay.png" ></Image>
-                                <label text="ค่าใช้จ่าย"  class = "Cloud-Light setLabelIcon" ></label>
-                  </WrapLayout>
-
-                  <label text=""   class = "setSpaceIcon" backgroundColor="white"></label>
-
-                  <WrapLayout orientation="horizontal" width="32%" height="100%" style.backgroundColor="lightgray">
-                                <label text="             "  ></label>
-                                <Image class = "setIcon" src="~/images/chart.png" ></Image>
-                                <label text="กราฟ"  class = "Cloud-Light setFatChart" ></label>
-                  </WrapLayout>
-
-                  <label text=""  class = "setSpaceLine"  backgroundColor="white"></label>
-
-                  <Image class = "setNews" src="~/images/news.png" ></Image>
-                </WrapLayout>
-              </Page>
+                        <WrapLayout orientation="horizontal" width="15%" style.backgroundColor="white" >
+                                
+                        </WrapLayout>
         
+                </WrapLayout>
+        
+                <WrapLayout orientation="horizontal" width="100%">
+                                <label text="" height="0.5" width="100%" backgroundColor="lightgray"></label>
+                </WrapLayout>
 
+        <WrapLayout orientation="horizontal" width="100%" class="bg">
+                <label height="35"></label>
+        </WrapLayout>
+
+
+</WrapLayout>                           
 </StackLayout>
-
+<StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
+                <!-- >> activity-indicator-setting-busy-html -->
+                <ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator textgray"></ActivityIndicator>
+                <!-- << activity-indicator-setting-busy-html -->
+</StackLayout>
 </Scrollview>
 </Page>

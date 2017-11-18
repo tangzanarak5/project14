@@ -7,6 +7,7 @@ import { connectionType, getConnectionType } from "connectivity";
 import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
+import { ActivityIndicator } from "ui/activity-indicator";
 
 @Component({
     selector: "registerAccount",
@@ -17,10 +18,14 @@ import { checkRegister } from "../model/checkRegister.model"
 
 export class registerAccountComponent implements OnInit {
 
+    public firebase = require("nativescript-plugin-firebase");
+
     checkRegister: checkRegister;
     res
     idCard = "";
     hn;
+    dataUser ;
+    isLoading = true ;
 
     ngOnInit(): void {
         this.checkRegister = new checkRegister();
@@ -30,24 +35,84 @@ export class registerAccountComponent implements OnInit {
         console.log(securityService.getCheckRegister);
         this.checkRegister = JSON.parse(securityService.getCheckRegister);
         console.log(this.checkRegister.idCard);
+
+        this.firebase.init({
+            storageBucket: "gs://fir-appproject14.appspot.com"
+              // Optionally pass in properties for database, authentication and cloud messaging,
+              // see their respective docs.
+            }).then(
+              instance => {
+                console.log("firebase.init done")
+              },
+              error => {
+                console.log(`firebase.init error: ${error}`);
+              }
+            )
+  
+            var tns = this;
+            
+                  var onQueryEvent = function(result) {
+                    // note that the query returns 1 match at a time
+                    // in the order specified in the query
+                    if (!result.error) {
+                        console.log("Event type: " + result.type);
+                        console.log("Key: " + result.key);
+                        console.log("Value: " + JSON.stringify(result.value));
+                        tns.dataUser = result.value;
+                    }
+                };
+            
+                this.firebase.query(
+                    onQueryEvent,
+                    "/registerUsers",
+                    {
+                        // set this to true if you want to check if the value exists or just want the event to fire once
+                        // default false, so it listens continuously.
+                        // Only when true, this function will return the data in the promise as well!
+                        singleEvent: true,
+                        // order by company.country
+                        orderBy: {
+                            type: this.firebase.QueryOrderByType.CHILD,
+                            value: 'since' // mandatory when type is 'child'
+                        }
+                    }
+                );
+  
     }
 
     getDataPeople () {
-        let nts = this ;
+        let tns = this ;
+        this.isLoading = false ;
         this.registerAccountService.getDataPatient()
         .subscribe(
             (Response) => {
-                if (Response.dataset.cid == nts.checkRegister.idCard) {
+                if (Response.dataset.cid == tns.checkRegister.idCard) {
                 
-                    if (Response.dataset.hn == nts.checkRegister.hn) {
-                      
-                        this.router.navigate(["/security/registerPassword"]);
+                    if (Response.dataset.hn == tns.checkRegister.hn) {
+
+                        var results = Object.keys(this.dataUser).map(function(key) {
+                            return tns.dataUser[key];
+                          });
+                          
+                             console.log(JSON.stringify(results)); 
+                             console.log(JSON.stringify(Response.dataset.hn.toString()));          
+                          let resultUserUsername = results.find(item => item.hn === Response.dataset.hn.toString());
+                          console.log(resultUserUsername); 
+                            this.router.navigate(["/security/registerPassword"]);
+                            this.isLoading = true ;
                     }
-                    else{alert('ไม่พบหมายเลข HN นี้ในระบบ');}
+                    else{
+                        this.isLoading = true ;
+                        alert('ไม่พบหมายเลข HN นี้ในระบบ');
+                    }
                 }
-                else {alert('ไม่พบหมายเลขบัตรประชาชนนี้ในระบบ');}
+                else {
+                    this.isLoading = true ;
+                    alert('ไม่พบหมายเลขบัตรประชาชนนี้ในระบบ');
+                }
             },
             (error) => {
+                this.isLoading = true ;
                 alert("Get Error");
             }
         )

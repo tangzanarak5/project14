@@ -8,6 +8,9 @@ import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { loginProfileService } from "./loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
+import * as dialogs from "ui/dialogs";
+import { ActivityIndicator } from "ui/activity-indicator";
+
 @Component({
     selector: "loginProfile",
     templateUrl: "loginProfile.component.html",
@@ -20,13 +23,24 @@ export class loginProfileComponent implements OnInit {
     dataUser ;
     nameAndsurname ;
     hospitalnumber ;
+    gender ;
+    dob ;
+    blood ;
+    isLoading = true ;
 
     ngOnInit(): void {
+        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
         console.log(this.dataUser.dataset.hn)
         this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
         this.hospitalnumber = this.dataUser.dataset.hn
+        this.gender = "เพศ " + this.dataUser.dataset.gender
+        this.dob = "วันเกิด " + this.dataUser.dataset.dob
+        if (this.dataUser.dataset.blood == null) {
+            this.blood = "เลือด -"
+        }
+        else {this.blood = "เลือด " + this.dataUser.dataset.blood}
     }
 
     constructor(
@@ -43,8 +57,20 @@ export class loginProfileComponent implements OnInit {
     }
 
     logout () {
-        securityService.setIsLogin = "";
-        this.router.navigate(["/security/standbytologin"]);
+        dialogs.confirm({
+            title: "ออกจากระบบ",
+            cancelButtonText: "ตกลง",
+            okButtonText: "ยกเลิก"
+        }).then(result => {
+            // result argument is boolean
+            console.log("Dialog result: " + result);
+            if (result == false) {
+                this.isLoading = false ;
+                securityService.setIsLogin = ""
+                securityService.setDataUser = ""
+                this.router.navigate(["/security/standbytologin"]);
+            }
+        });  
     }
 
  }

@@ -12,4 +12,4 @@ const routes: Routes = [
     }
 ];
 
-export const FeedRouting: ModuleWithProviders = RouterModule.forChild(routes);
+export const LoginAcceptRouting: ModuleWithProviders = RouterModule.forChild(routes);

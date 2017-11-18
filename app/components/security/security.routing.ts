@@ -13,9 +13,9 @@ import { formPicAndAcceptComponent } from "./formPicAndAccept/formPicAndAccept.c
 import { formDateComponent } from "./formProfileRecord/formDate.component";
 import { registerPasswordComponent } from "./registerPassword/registerPassword.component";
 import { subMitFormComponent } from "./subMitform/subMitForm.component";
-import { testComponent } from "./test/test.component";
 import { AuthGuard } from "./auth-guard.service";
 import { newPatientComponent } from "./newPatient/newPatient.component";
+import { registerSuccessComponent } from "../security/registerSuccess/registerSuccess.component";
 
 const routes: Routes = [
    
@@ -69,12 +69,12 @@ const routes: Routes = [
                 component: subMitFormComponent
             },
             {
-                path: 'test',
-                component: testComponent
-            },
-            {
                 path: 'newPatient',
                 component: newPatientComponent
+            },
+            {
+                path: 'registerSuccess',
+                component: registerSuccessComponent
             }
             
         ]

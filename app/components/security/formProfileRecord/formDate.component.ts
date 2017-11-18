@@ -45,8 +45,8 @@ export class formDateComponent {
     }
     onPickerLoaded(args) {
         let datePicker = <DatePicker>args.object;
-        datePicker.year = this.toDay.getFullYear();
         datePicker.day = this.toDay.getDate();
+        datePicker.year = this.toDay.getFullYear();
         datePicker.month = this.toDay.getMonth() + 1;
         datePicker.minDate = new Date(1925, 0, 29);
         datePicker.maxDate = new Date();

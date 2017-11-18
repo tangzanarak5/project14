@@ -6,6 +6,7 @@ import { connectionType, getConnectionType } from "connectivity";
 import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
+import { ActivityIndicator } from "ui/activity-indicator";
 
 @Component({
     selector: "registerPassword",
@@ -23,6 +24,7 @@ export class registerPasswordComponent implements OnInit {
     samePassword = "" ;
     splitPassword;
     sumPassword ="";
+    isLoading = true ;
  constructor(
     page: Page,
     private router: Router,
@@ -250,8 +252,10 @@ checkPassword () {
                 console.log(this.sumPassword);
                 this.sumPassword = "";
             }
+            
             else{
                 //alert("ผ่าน");
+                this.isLoading = false ;
                 console.log(this.sumPassword);
                 this.firebase.push(
                     '/registerUsers',
@@ -268,7 +272,8 @@ checkPassword () {
                 this.checkRegister.idCard = ""
                 this.checkRegister.hn = "";
                 securityService.setCheckRegister = JSON.stringify(this.checkRegister);
-                this.router.navigate(["/security/standbytologin"])
+                this.router.navigate(["/security/registerSuccess"])
+                this.isLoading = true ;
             }
         }
         if (this.password != this.samePassword) {

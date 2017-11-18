@@ -17,7 +17,7 @@ export class formPicAndAcceptService {
         console.log("connect");
         this.user = JSON.parse(securityService.getUserData);
         console.log(this.user.idCard);
-        let url = "http://192.168.1.15:7777/newUser";
+        let url = "http://192.168.1.11:7777/newUser";
         return this.http.post(url, JSON.stringify(this.user), options)
         .subscribe(result => 
             {

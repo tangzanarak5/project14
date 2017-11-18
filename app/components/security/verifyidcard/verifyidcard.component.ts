@@ -7,6 +7,7 @@ import { connectionType, getConnectionType } from "connectivity";
 import { Page } from "tns-core-modules/ui/page";
 import { user } from "../model/user.model"
 import { securityService } from "../security.service";
+import { ActivityIndicator } from "ui/activity-indicator";
 
 @Component({
     selector: "verifyidcard",
@@ -20,6 +21,7 @@ export class verifyidcardComponent implements OnInit {
     idCard = "";
     res;
     user: user ;
+    isLoading = true ;
     ngOnInit(): void {
         this.user = new user();
         this.user.idCard = "";
@@ -48,6 +50,7 @@ export class verifyidcardComponent implements OnInit {
     }
     getDataPeople () {
         let nts = this ;
+        this.isLoading = false ;
         this.verifyidcardService.getDataPatient()
         .subscribe(
             (Response) => {
@@ -55,12 +58,14 @@ export class verifyidcardComponent implements OnInit {
                 //let resultUserData = Response.dataset.find(item => item.cid === vm.idCard);
                 
                 if (Response.dataset.cid == nts.user.idCard) {
+                    this.isLoading = true ;
                     console.log('yes');
                     alert("หมายเลขบัตรประชาชนนี้ลงทะเบียนแล้ว");
                 }
                     else {
                             console.log('no');
                             this.router.navigate(["/security/formProfileRecord"]);
+                            this.isLoading = true ;
                         }
             },
             (error) => {

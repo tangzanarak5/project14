@@ -8,6 +8,7 @@ import { action } from "ui/dialogs";
 import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkHn } from "../model/checkHn.model"
+import { ActivityIndicator } from "ui/activity-indicator";
 
 @Component({
     selector: "verifyHn",
@@ -21,6 +22,7 @@ export class VerifyHnComponent implements OnInit {
     checkHn: checkHn;
     hospitalNumber ;
     res ;
+    isLoading = true ;
     constructor(
         page: Page,
         private router: Router,
@@ -46,10 +48,12 @@ export class VerifyHnComponent implements OnInit {
     getHospitalNumber () {
 
         let nts = this ;
+        this.isLoading = false ;
         this.verifyHnService.getDataPatient()
         .subscribe(
             (Response) => {
                 if (Response.dataset.cid == nts.checkHn.idCard) {
+                    this.isLoading = true ;
                     console.log('yes');
                     this.hospitalNumberActionDialog(Response.dataset.hn.toString());
                     this.checkHn.idCard = "";
@@ -61,6 +65,7 @@ export class VerifyHnComponent implements OnInit {
                     cancelButtonText: "ตกลง",
                     actions: ["ไม่พบหมายเลขประจำตัวผู้ป่วย"]
                 };
+                this.isLoading = true ;
                     console.log('no'); action(noData)}
                     this.checkHn.idCard = "";
                     securityService.setCheckHn = JSON.stringify(this.checkHn);

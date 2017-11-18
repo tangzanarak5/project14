@@ -25,6 +25,7 @@ export class formPicAndAcceptComponent implements OnInit {
     image ;
     pathimg ;
     pathcommit ;
+    isLoading = true ;
     constructor(
         private formPicAndAcceptService: formPicAndAcceptService,
         private route: ActivatedRoute,
@@ -189,6 +190,7 @@ changeImg () {
             tns.user.pic = "";
             securityService.setUserData = JSON.stringify(tns.user);
             tns.router.navigate(["/security/subMitForm"]);
+            tns.isLoading = true ;
           },
           function (error) {
             console.log("File upload error: " + error);
@@ -219,6 +221,7 @@ nextToSymptom () {
             // result argument is boolean
             console.log("Dialog result: " + result);
             if (result == false) {
+                this.isLoading = false ;
                this.upload() ;
                 
                 // securityService.setUserData = JSON.stringify(this.user);

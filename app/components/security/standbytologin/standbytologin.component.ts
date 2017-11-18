@@ -8,7 +8,7 @@ import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { idp } from "../model/idp.model"
 import { standbytologinService } from "./standbytologin.service";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
-
+import { ActivityIndicator } from "ui/activity-indicator";
 
 @Component({
     selector: "standbytologin",
@@ -25,6 +25,7 @@ export class StandByToLoginComponent implements OnInit {
     connect = false ;
     dataUser ;
     datasUser ;
+    isLoading = true ;
 
     constructor(
         private modal: ModalDialogService,
@@ -42,7 +43,7 @@ export class StandByToLoginComponent implements OnInit {
             // see their respective docs.
           }).then(
             instance => {
-              console.log("firebase.init done");
+              console.log("firebase.init done")
             },
             error => {
               console.log(`firebase.init error: ${error}`);
@@ -84,13 +85,14 @@ export class StandByToLoginComponent implements OnInit {
           securityService.setIdp = JSON.stringify(this.idp);
           console.log(securityService.getIdp);
           this.idp = JSON.parse(securityService.getIdp);
-          console.log(JSON.stringify(this.idp) + "dsfsdf");
+          console.log(JSON.stringify(this.idp));
         //   console.log(securityService.isLoggedIn());
         //   console.log(securityService.getIsLogin);
 
     }
 
     checkLogin () { 
+            
             var tns = this;
              var results = Object.keys(this.dataUser).map(function(key) {
                return tns.dataUser[key];
@@ -104,6 +106,7 @@ export class StandByToLoginComponent implements OnInit {
                     console.log("username connect");
                     let resultUserPassword = results.find(item => item.pass === tns.idp.password);
                if (resultUserPassword) {
+                    this.isLoading = false ;
                     this.idp.isLogin = true ;
                     securityService.setIsLogin = "true";
                     console.log("password connect");
@@ -119,6 +122,7 @@ export class StandByToLoginComponent implements OnInit {
                           tns.router.navigate(["/loginAccept"]);
                         },
                         (error) => {
+                            this.isLoading = true ;
                             alert("Get Error");
                         }
                     )

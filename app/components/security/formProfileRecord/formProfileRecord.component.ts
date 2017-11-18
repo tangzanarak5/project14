@@ -116,7 +116,7 @@ religionActionDialog() {
         title: "ศาสนา",
         message: "เลือก",
         cancelButtonText: "",
-        actions: ["พุทธ","อื่น ๆ"]
+        actions: ["พุทธ","คริส","อิสลาม","อื่น ๆ"]
     };
     let tm = this
     action(options).then((result) => {

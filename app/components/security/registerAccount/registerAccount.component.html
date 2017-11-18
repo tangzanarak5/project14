@@ -1,7 +1,12 @@
-<StackLayout class="Cloud-Light">
+<StackLayout class="Cloud-Light" *ngIf="isLoading">
     <Label text = "ลงทะเบียนภูเบศรแคร์" class="labelTitle sizeFontTitle fontBlack"></Label>
     <TextField  keyboardType = "number" [(ngModel)]="checkRegister.idCard" hint="หมายเลขบัตรประชาชน" class="sizeInput sizeFont" maxLength="13"></TextField>
     <TextField  keyboardType = "number" [(ngModel)]="checkRegister.hn" hint="หมายเลข HN" class="sizeInput sizeFont" maxLength="13"></TextField>
     <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ตรวจสอบ" (tap)="checkIdCardAndHn()"></Button>
     <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ลัด" (tap)="net()"></Button>
+</StackLayout>
+<StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
+        <!-- >> activity-indicator-setting-busy-html -->
+        <ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator textgray"></ActivityIndicator>
+        <!-- << activity-indicator-setting-busy-html -->
 </StackLayout>

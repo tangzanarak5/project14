@@ -20,9 +20,9 @@ import { registerPasswordComponent } from "../security/registerPassword/register
 import { subMitFormComponent } from "./subMitform/subMitForm.component";
 import { formPicAndAcceptService } from "./formPicAndAccept/formPicAndAccept.service";
 import { standbytologinService } from "./standbytologin/standbytologin.service";
-import { testComponent } from "./test/test.component";
 import { AuthGuard } from "../security/auth-guard.service";
 import { newPatientComponent } from "./newPatient/newPatient.component";
+import { registerSuccessComponent } from "../security/registerSuccess/registerSuccess.component";
 
 @NgModule({
     imports: [
@@ -43,8 +43,8 @@ import { newPatientComponent } from "./newPatient/newPatient.component";
         formDateComponent,
         registerPasswordComponent,
         subMitFormComponent,
-        testComponent,
-        newPatientComponent
+        newPatientComponent,
+        registerSuccessComponent
         
     ],
     providers: [

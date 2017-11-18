@@ -1,19 +1,28 @@
 .sizePicture {
-    margin-top: -220px;
+    margin-top: -325px;
     height: 25%;
     width: 25%;
     margin-right: 65%;
+}
+.sizePic {
+    height: 50%;
+    width: 50%;
 }
 .Cloud-Light {
     font-family: "Cloud-Light" ;
     font-weight: 800;
     font-size: 16px;
 }
+.Cloud-Lights {
+    font-family: "Cloud-Light" ;
+    font-weight: 1000;
+    font-size: 18px;
+}
 .setLabel {
     margin-left: 35%;
 }
 .title {
-    font-size: 28px;
+    font-size: 50px;
 }
 .bg{
     background-color: #00352c;
@@ -47,24 +56,46 @@
     border-style: solid;
     border-width: 5px;
 }
+.setIconNews{
+    width: 60%;
+    height: 50%;
+    margin-left: 21%;
+}
 .setSpaceIcon{
-    width: 2%;
+    width: 0.2%;
     height: 32%;
 }
 .setSpaceLine{
     width: 100%;
-    height: 20px;
+    height: 1px;
 }
 .setNews{
     width: 100%;
     height: 40%;
 }
 .setLabelIcon {
-    margin-left: 27%;
+    margin-left: 2%;
 }
 .setFatChart {
     margin-left: 36%;
 }
 .setDrug {
     margin-left: 45%;
+}
+.setCenter {
+    text-align: center ;
+}
+.topDown {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.top {
+    margin-top: 20px;
+}
+titleMargin {
+    margin-left: 20%;
+}
+.Button {
+    color: red;
+    background-color: #ffffff;
 }
