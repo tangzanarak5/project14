@@ -108,13 +108,13 @@ export class StandByToLoginComponent implements OnInit {
                if (resultUserPassword) {
                     this.isLoading = false ;
                     this.idp.isLogin = true ;
-                    securityService.setIsLogin = "true";
                     console.log("password connect");
                     securityService.setIdp = JSON.stringify(tns.idp);
 
                     tns.standbytologinService.getDataPatient()
                     .subscribe(
                         (Response) => {
+                            securityService.setIsLogin = "true";
                             console.log(JSON.stringify(Response) + "user login");
                           securityService.setDataUser = JSON.stringify(Response);
                           tns.datasUser = JSON.parse(securityService.getDataUser);
@@ -122,8 +122,9 @@ export class StandByToLoginComponent implements OnInit {
                           tns.router.navigate(["/loginAccept"]);
                         },
                         (error) => {
+                            securityService.setIsLogin = "false";
                             this.isLoading = true ;
-                            alert("Get Error");
+                            alert("ไม่สามารถเชื่อต่อได้");
                         }
                     )
 

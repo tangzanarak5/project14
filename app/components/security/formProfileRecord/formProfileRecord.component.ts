@@ -74,6 +74,12 @@ nameTitleActionDialog() {
         action(options).then((result) => {
             tm.user.nameTitle = result;
             console.log(tm.user.nameTitle);
+            if(tm.user.nameTitle == "นาย" || tm.user.nameTitle == "เด็กชาย"){
+                tm.user.gender = "ชาย"
+            }
+            else{
+                tm.user.gender = "หญิง"
+            }
         });  
     }
 

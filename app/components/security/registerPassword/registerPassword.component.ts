@@ -254,8 +254,9 @@ checkPassword () {
             }
             
             else{
-                //alert("ผ่าน");
-                this.isLoading = false ;
+                if(this.sumPassword.length >= 6){
+              
+                this.isLoading = false ;  // alert("ผ่าน");
                 console.log(this.sumPassword);
                 this.firebase.push(
                     '/registerUsers',
@@ -274,6 +275,11 @@ checkPassword () {
                 securityService.setCheckRegister = JSON.stringify(this.checkRegister);
                 this.router.navigate(["/security/registerSuccess"])
                 this.isLoading = true ;
+                }
+                else{
+                    alert("กรุณาตั้งรหัสผ่านอย่างน้อย 6 ตัว");
+                    this.sumPassword = "";
+                }
             }
         }
         if (this.password != this.samePassword) {

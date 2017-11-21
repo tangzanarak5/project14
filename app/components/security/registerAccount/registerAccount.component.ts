@@ -8,6 +8,7 @@ import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
 import { ActivityIndicator } from "ui/activity-indicator";
+import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 
 @Component({
     selector: "registerAccount",
@@ -86,10 +87,8 @@ export class registerAccountComponent implements OnInit {
         this.registerAccountService.getDataPatient()
         .subscribe(
             (Response) => {
-                if (Response.dataset.cid == tns.checkRegister.idCard) {
+                if (Response.dataset.cid == tns.checkRegister.idCard && Response.dataset.hn == tns.checkRegister.hn) {
                 
-                    if (Response.dataset.hn == tns.checkRegister.hn) {
-
                         var results = Object.keys(this.dataUser).map(function(key) {
                             return tns.dataUser[key];
                           });
@@ -97,18 +96,19 @@ export class registerAccountComponent implements OnInit {
                              console.log(JSON.stringify(results)); 
                              console.log(JSON.stringify(Response.dataset.hn.toString()));          
                           let resultUserUsername = results.find(item => item.hn === Response.dataset.hn.toString());
-                          console.log(resultUserUsername); 
-                            this.router.navigate(["/security/registerPassword"]);
+
+                          if(resultUserUsername){
                             this.isLoading = true ;
-                    }
-                    else{
-                        this.isLoading = true ;
-                        alert('ไม่พบหมายเลข HN นี้ในระบบ');
-                    }
+                            alert("ไม่สามารถทำการลงทะเบียนได้\nหมายเลขประจำตัวผู้ป่วยนี้มีอยู่ในระบบแล้ว");
+                          }
+                          else {
+                                this.router.navigate(["/security/registerPassword"]);
+                                this.isLoading = true ;
+                            }
                 }
                 else {
                     this.isLoading = true ;
-                    alert('ไม่พบหมายเลขบัตรประชาชนนี้ในระบบ');
+                    alert('กรุณาใส่หมายเลขบัตรประชาชนและหมายเลข HN ให้ถูกต้อง');
                 }
             },
             (error) => {
