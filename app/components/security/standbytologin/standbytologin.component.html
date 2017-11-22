@@ -1,9 +1,19 @@
 <Page>
     <ScrollView sdkExampleTitle sdkToggleNavButton>
     <StackLayout class="Cloud-Light" *ngIf="isLoading">
-
+        
+        <StackLayout class="StackBg">
+                <WrapLayout orientation="horizontal">
+                        <WrapLayout orientation="horizontal" width="75%" class="bg">
+                               
+                        </WrapLayout>
+                        <WrapLayout orientation="horizontal" width="25%" class="bg">
+                                <Label text = "+ สร้างบัญชี" style="color :white" class="marginRight marginTop sizeFontR" [nsRouterLink]="['../registerAccount']"></Label>
+                        </WrapLayout>
+                        
+                </WrapLayout>
+        </StackLayout>
     <StackLayout class="StackBg">
-            <Label text = "+ สร้างบัญชี" style="color :white" class="marginRight marginTop sizeFontR" [nsRouterLink]="['../registerAccount']"></Label>
         <Image class = "sizePicture" src="~/images/newbaner.png"></Image>
     </StackLayout>
     
