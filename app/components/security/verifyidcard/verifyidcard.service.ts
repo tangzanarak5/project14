@@ -17,7 +17,7 @@ export class verifyidcardService {
         console.log(securityService.getUserData);
         this.user = JSON.parse(securityService.getUserData);
         console.log(this.user.idCard);
-        let url = "https://cpa.go.th/api/patient.php?request=get&cid=" + this.user.idCard + "&token=" + this.token;
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.user.idCard + "&token=" + this.token;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }

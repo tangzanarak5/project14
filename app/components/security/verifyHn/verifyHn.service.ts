@@ -17,7 +17,7 @@ export class verifyHnService {
         console.log(securityService.getCheckHn);
         this.checkHn = JSON.parse(securityService.getCheckHn);
         console.log(this.checkHn.idCard);
-        let url = "https://cpa.go.th/api/patient.php?request=get&cid=" + this.checkHn.idCard + "&token=" + this.token;
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.checkHn.idCard + "&token=" + this.token;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }

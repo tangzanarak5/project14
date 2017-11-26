@@ -19,7 +19,7 @@ export class loginProfileService {
         this.dataUser = JSON.parse(securityService.getDataUser);
         this.idp = JSON.parse(securityService.getIdp);
         console.log(this.dataUser.hn);
-        let url = "https://cpa.go.th/api/patient.php?request=get&cid=" + this.dataUser.hn + "&token=" + this.token;
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.dataUser.hn + "&token=" + this.token;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }

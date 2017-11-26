@@ -17,7 +17,7 @@ export class standbytologinService {
         console.log(securityService.getIdp);
         this.idp = JSON.parse(securityService.getIdp);
         console.log(this.idp.username);
-        let url = "https://cpa.go.th/api/patient.php?request=get&cid=" + this.idp.username + "&token=" + this.token;
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.idp.username + "&token=" + this.token;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }

@@ -114,8 +114,8 @@ export class StandByToLoginComponent implements OnInit {
                     tns.standbytologinService.getDataPatient()
                     .subscribe(
                         (Response) => {
-                            securityService.setIsLogin = "true";
-                            console.log(JSON.stringify(Response) + "user login");
+                          securityService.setIsLogin = "true";
+                          console.log(JSON.stringify(Response) + "user login");
                           securityService.setDataUser = JSON.stringify(Response);
                           tns.datasUser = JSON.parse(securityService.getDataUser);
                           console.log(JSON.stringify(tns.dataUser));
