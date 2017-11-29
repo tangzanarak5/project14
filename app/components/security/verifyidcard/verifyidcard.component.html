@@ -2,7 +2,6 @@
     <Label text = "ลงทะเบียนเวชระเบียนผู้ป่วยใหม่" class="labelTitle sizeFontTitle fontBlack"></Label>
     <TextField  keyboardType = "number" [(ngModel)]="user.idCard" hint="หมายเลขบัตรประชาชน" class="sizeInput sizeFont" maxLength="13"></TextField>
     <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ตรวจสอบ" (tap)="checkIdCard()"></Button>
-    <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ตรวจสอบ" (tap)="net()"></Button>
 </StackLayout>
 <StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
         <!-- >> activity-indicator-setting-busy-html -->

@@ -28,7 +28,7 @@
        
         <TextField class = "allAroundTextField inputColor" editable = "false" [(ngModel)] = "user.gender"  hint="* เพศ" (tap)="genderActionDialog()" ></TextField>
         
-        <TextField class="allAroundTextField inputColor" editable= "false" [text]="showBirthDay" hint="* วันเกิด" (tap) = "showModal()"></TextField>
+        <TextField class="allAroundTextField inputColor" editable= "false" [text]="showBirthDayZero" hint="* วันเกิด" (tap) = "showModal()"></TextField>
 
         <TextField class = "allAroundTextField inputColor"  [editable] = "editableNation" [(ngModel)] = "user.nation"  hint="* สัญชาติ" (tap)="nationActionDialog()" ></TextField>
 
@@ -41,7 +41,6 @@
             <StackLayout class="StackBgColor">
                 <StackLayout class=""> 
             <Button class="btn btn-primary Button Cloud-Light" text = "ต่อไป" (tap)="nextToAddress()" ></Button>
-            <Button class="btn btn-primary Button Cloud-Light" text = "ลัดๆ" (tap)="net()" ></Button>
                 </StackLayout>
             </StackLayout>
 

@@ -21,6 +21,16 @@ export class verifyidcardService {
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }
+
+    getDataPatientRegister (): Observable<any> {
+        this.user = new user();
+        console.log(securityService.getUserData);
+        this.user = JSON.parse(securityService.getUserData);
+        console.log(this.user.idCard);
+        let url = "http://api.cpa.go.th/patient.php?token=" + this.token + "&request=get_preregister&cid=" + this.user.idCard ;
+        return this.http.get(url).map(response => response.json())
+        .catch(this.handleErrors);
+    }
   
     constructor(
         private router: Router,

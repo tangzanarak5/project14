@@ -25,7 +25,9 @@ export class formProfileRecordComponent implements OnInit {
     editableNation = true;
     editableReligion = true;
     showBirthDay = "" ;
+    showBirthDayZero = "" ;
     inputAlret = "";
+    allBirthday = "";
     constructor(
         private modal: ModalDialogService,
         private vcRef: ViewContainerRef,
@@ -58,7 +60,83 @@ public showModal() {
     this.modal.showModal(formDateComponent, options).then(res => {
         this.birthday = new Date(res) ;
         this.showBirthDay = this.getDate(this.birthday);
-        this.user.birthDay = this.showBirthDay;
+        this.showBirthDayZero = this.getDate(this.birthday);
+        let monthZero
+        let dayZero
+        let yearZero
+
+        if(this.showBirthDayZero.length == 8){
+             monthZero = this.showBirthDayZero.substring(2,3);
+             dayZero = this.showBirthDayZero.substring(0,1);
+             yearZero = this.showBirthDayZero.substring(4,8);
+             this.showBirthDayZero = "0"+ dayZero + "-0" + monthZero + "-" + yearZero
+        }
+
+        if(this.showBirthDayZero.length == 9){
+            let lineZero = this.showBirthDay.substring(1,2);
+            console.log("LineZero = " + lineZero);
+            if(lineZero == "-"){
+                monthZero = this.showBirthDayZero.substring(2,4);
+                dayZero = this.showBirthDayZero.substring(0,1);
+                yearZero = this.showBirthDayZero.substring(5,9);
+                this.showBirthDayZero = "0"+ dayZero + "-" + monthZero + "-" + yearZero
+            }
+            
+            else {
+                monthZero = this.showBirthDayZero.substring(3,4);
+                dayZero = this.showBirthDayZero.substring(0,2);
+                yearZero = this.showBirthDayZero.substring(5,9);
+                this.showBirthDayZero = dayZero + "-0" + monthZero + "-" + yearZero
+            }
+        }
+        console.log(this.showBirthDay);
+
+        let year
+        let month
+        let day
+        if(this.showBirthDay.length == 10){
+            year = this.showBirthDay.substring(6,10);
+            console.log(year);
+            month = this.showBirthDay.substring(3,5);
+            console.log(month);
+            day = this.showBirthDay.substring(0,2);
+            console.log(day);
+        }
+        else if(this.showBirthDay.length == 9){
+
+            let line = this.showBirthDay.substring(1,2);
+            console.log("Line = " + line);
+            if(line == "-"){
+                year = this.showBirthDay.substring(5,9);
+                console.log(year);
+                month = this.showBirthDay.substring(2,4);
+                console.log(month);
+                day = "0" + this.showBirthDay.substring(0,1);
+                console.log(day);
+            }
+            else{
+                year = this.showBirthDay.substring(5,9);
+                console.log(year);
+                month = "0" + this.showBirthDay.substring(3,4);
+                console.log(month);
+                day = this.showBirthDay.substring(0,2);
+                console.log(day);
+            }
+        }
+        else if(this.showBirthDay.length == 8){
+            year = this.showBirthDay.substring(4,8);
+            console.log(year);
+            month = "0" + this.showBirthDay.substring(2,3);
+            console.log(month);
+            day = "0" + this.showBirthDay.substring(0,1);
+            console.log(day);
+        }
+        
+
+         this.allBirthday = year + "-" + month + "-" + day;
+        console.log(this.allBirthday);
+        this.user.birthDay = this.allBirthday;
+        
     });
 }
     
@@ -165,6 +243,7 @@ nextToAddress () {
             this.router.navigate(["/security/formAddressRecord"]);
         }
         this.inputAlret = "";
+        
     }
 
     net () {

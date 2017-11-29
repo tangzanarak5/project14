@@ -17,11 +17,11 @@ export class verifyHnService {
         console.log(securityService.getCheckHn);
         this.checkHn = JSON.parse(securityService.getCheckHn);
         console.log(this.checkHn.idCard);
-        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.checkHn.idCard + "&token=" + this.token;
+        let url = "http://api.cpa.go.th/patient.php?token=" + this.token + "&request=get_preregister&cid=" + this.checkHn.idCard;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }
-  
+
     constructor(
         private router: Router,
         private http: Http

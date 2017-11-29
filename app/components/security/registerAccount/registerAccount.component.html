@@ -3,7 +3,6 @@
     <TextField  keyboardType = "number" [(ngModel)]="checkRegister.idCard" hint="หมายเลขบัตรประชาชน" class="sizeInput sizeFont" maxLength="13"></TextField>
     <TextField  keyboardType = "number" [(ngModel)]="checkRegister.hn" hint="หมายเลข HN" class="sizeInput sizeFont" maxLength="13"></TextField>
     <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ตรวจสอบ" (tap)="checkIdCardAndHn()"></Button>
-    <Button class="btn btn-primary Button Cloud-Light sizeFont" text = "ลัด" (tap)="net()"></Button>
 </StackLayout>
 <StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
         <!-- >> activity-indicator-setting-busy-html -->

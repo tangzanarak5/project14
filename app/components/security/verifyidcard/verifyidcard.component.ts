@@ -63,9 +63,26 @@ export class verifyidcardComponent implements OnInit {
                     alert("หมายเลขบัตรประชาชนนี้ลงทะเบียนแล้ว");
                 }
                     else {
-                            console.log('no');
-                            this.router.navigate(["/security/formProfileRecord"]);
-                            this.isLoading = true ;
+                        this.verifyidcardService.getDataPatientRegister().subscribe(
+                            (Response) => {
+                
+                                //let resultUserData = Response.dataset.find(item => item.cid === vm.idCard);
+                                
+                                if (Response.dataset.cid == nts.user.idCard) {
+                                    this.isLoading = true ;
+                                    console.log('yes');
+                                    alert("หมายเลขบัตรประชาชนนี้ลงทะเบียนแล้ว");
+                                }
+                                    else {
+                                            console.log('no');
+                                            this.router.navigate(["/security/formProfileRecord"]);
+                                            this.isLoading = true ;
+                                        }
+                            },
+                            (error) => {
+                                alert("Get Error");
+                            }
+                        )
                         }
             },
             (error) => {

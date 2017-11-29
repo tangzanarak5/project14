@@ -53,20 +53,23 @@ export class VerifyHnComponent implements OnInit {
         .subscribe(
             (Response) => {
                 if (Response.dataset.cid == nts.checkHn.idCard) {
+                    if(Response.dataset.hn != null){
                     this.isLoading = true ;
                     console.log('yes');
                     this.hospitalNumberActionDialog(Response.dataset.hn.toString());
                     this.checkHn.idCard = "";
                     securityService.setUserData = JSON.stringify(this.checkHn);
-                }
+                    }
+
                 else {
-                    let noData = {
-                    title: "ลงทะเบียนไม่สำเร็จ",
-                    cancelButtonText: "ตกลง",
-                    actions: ["ไม่พบหมายเลขประจำตัวผู้ป่วย"]
-                };
-                this.isLoading = true ;
-                    console.log('no'); action(noData)}
+                        let noData = {
+                        title: "ลงทะเบียนไม่สำเร็จ",
+                        cancelButtonText: "ตกลง",
+                        actions: ["ไม่พบหมายเลขประจำตัวผู้ป่วย"]
+                    };
+                    this.isLoading = true ;
+                        console.log('no'); action(noData)}
+                }
                     this.checkHn.idCard = "";
                     securityService.setCheckHn = JSON.stringify(this.checkHn);
             },

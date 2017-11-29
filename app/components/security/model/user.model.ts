@@ -1,4 +1,5 @@
 export class user implements iUser{
+
     idCard: string;
     nameTitle: string;
     name: string;
@@ -18,6 +19,7 @@ export class user implements iUser{
     pic: string;
 
     constructor(){
+
       this.idCard = "";
       this.nameTitle = "";
       this.name = "";

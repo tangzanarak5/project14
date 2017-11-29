@@ -1,4 +1,5 @@
 interface iUser {
+
     idCard: string;
     nameTitle: string;
     name: string;
