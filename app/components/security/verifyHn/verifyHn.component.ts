@@ -70,8 +70,25 @@ export class VerifyHnComponent implements OnInit {
                     this.isLoading = true ;
                         console.log('no'); action(noData)}
                 }
-                    this.checkHn.idCard = "";
-                    securityService.setCheckHn = JSON.stringify(this.checkHn);
+                else {
+                    this.verifyHnService.getDataPatientReal()
+                    .subscribe(
+                        (Response) => {
+                            if (Response.dataset.cid == nts.checkHn.idCard) {
+                                
+                                this.isLoading = true ;
+                                console.log('yes');
+                                this.hospitalNumberActionDialog(Response.dataset.hn.toString());
+                                this.checkHn.idCard = "";
+                                securityService.setUserData = JSON.stringify(this.checkHn);
+                            }
+                        },
+                        (error) => {
+                            alert("Get Error");
+                        }
+                    )
+            }
+                    
             },
             (error) => {
                 alert("Get Error");

@@ -22,6 +22,16 @@ export class verifyHnService {
         .catch(this.handleErrors);
     }
 
+    getDataPatientReal (): Observable<any> {
+        this.checkHn = new checkHn();
+        console.log(securityService.getCheckHn);
+        this.checkHn = JSON.parse(securityService.getCheckHn);
+        console.log(this.checkHn.idCard);
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.checkHn.idCard + "&token=" + this.token;
+        return this.http.get(url).map(response => response.json())
+        .catch(this.handleErrors);
+    }
+
     constructor(
         private router: Router,
         private http: Http
