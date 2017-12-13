@@ -1,10 +1,11 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd">      
-<Scrollview>
-<StackLayout class="bg" *ngIf="isLoading">
+
+<StackLayout *ngIf="isLoading">
 <WrapLayout orientation="horizontal">
+                
 
         <WrapLayout orientation="horizontal" width="100%" class="bg">
-                <label height="40"></label>
+                <label height="20"></label>
         </WrapLayout>
 
         <WrapLayout orientation="horizontal" width="2.5%" class="bg">
@@ -24,6 +25,10 @@
                 </WrapLayout>
 
                 <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                <label class = "Cloud-Light" text="ภูเบศรแคร์ จ. ปราจีนบุรี" style="color: white;"></label>
+                        </WrapLayout>
+
+                <WrapLayout orientation="horizontal" width="100%" class="bg">
                         <label class = "Cloud-Light" [text]="hospitalnumber" style="color: white;"></label>
                 </WrapLayout>
 
@@ -32,23 +37,15 @@
                 </WrapLayout>
 
                 <WrapLayout orientation="horizontal" width="100%" class="bg">
-                        <label class = "Cloud-Light" [text]="gender" style="color: white;"></label>
-                        <label class = "Cloud-Light" text=" "></label>
-                        <label class = "Cloud-Light" [text]="blood" style="color: white;"></label>
-                        <label class = "Cloud-Light" text=" "></label>
-                        <label class = "Cloud-Light" [text]="dob" style="color: white;"></label>
-                </WrapLayout>
-
-                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                        <label class = "Cloud-Light" [text]="dataUser.dataset.tel" style="color: white;"></label>
-                        <label class = "Cloud-Light" text="  "></label>
-                        <label class = "Cloud-Light" text="[ออกจากระบบ]" style="color: red;" (tap) = "logout()"></label>
+                        <label class = "Cloud-Light" [text]="cid" style="color: white;"></label>
+                        <label text=" "></label>
+                        <label class = "Cloud-LightLogout" text=" [ออกจากระบบ]" style="color: red;" (tap) = "logout()"></label>
                 </WrapLayout>
 
         </WrapLayout>
 
         <WrapLayout orientation="horizontal" width="100%" class="bg">
-                <label height="40"></label>
+                <label height="15"></label>
         </WrapLayout>
 
         <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
@@ -102,7 +99,7 @@
         </WrapLayout>
 
         <WrapLayout orientation="horizontal" width="100%">
-                        <label text="" height="0.5" width="100%" backgroundColor="lightgray"></label>
+                        <label text="" height="0.7" width="100%" backgroundColor="lightgray"></label>
         </WrapLayout>
 
         <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
@@ -155,9 +152,9 @@
         
         </WrapLayout>
 
-        <WrapLayout orientation="horizontal" width="100%" class="bg">
-                        <label height="10"></label>
-                </WrapLayout>
+        <WrapLayout orientation="horizontal" width="100%">
+                        <label text="" height="0.7" width="100%" backgroundColor="lightgray"></label>
+        </WrapLayout>
         
                 <WrapLayout orientation="horizontal" width="100%" style.backgroundColor="white">
                         <WrapLayout orientation="horizontal" width="9%">
@@ -179,7 +176,7 @@
                         </WrapLayout>
                         <WrapLayout orientation="horizontal" width="9%">
                         </WrapLayout>
-                        <WrapLayout orientation="horizontal" width="15%">
+                        <WrapLayout orientation="horizontal" width="15%" (tap) = "conweb()">
                                 <label text=" "></label>
                                 <Image src="~/images/news.png" ></Image>
                                 <WrapLayout orientation="horizontal" width="15%">
@@ -207,13 +204,10 @@
                 </WrapLayout>
         
                 <WrapLayout orientation="horizontal" width="100%">
-                                <label text="" height="0.5" width="100%" backgroundColor="lightgray"></label>
+                                <label text="" height="0.7" width="100%" backgroundColor="lightgray"></label>
                 </WrapLayout>
 
-        <WrapLayout orientation="horizontal" width="100%" class="bg">
-                <label height="35"></label>
-        </WrapLayout>
-
+        
 
 </WrapLayout>                           
 </StackLayout>
@@ -222,5 +216,5 @@
                 <ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator textgray"></ActivityIndicator>
                 <!-- << activity-indicator-setting-busy-html -->
 </StackLayout>
-</Scrollview>
+
 </Page>

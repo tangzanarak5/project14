@@ -10,6 +10,7 @@ import { loginProfileService } from "./loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
 import * as dialogs from "ui/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
+import * as utils from "utils/utils";
 
 @Component({
     selector: "loginProfile",
@@ -18,9 +19,11 @@ import { ActivityIndicator } from "ui/activity-indicator";
     moduleId: module.id
 })
 
+
 export class loginProfileComponent implements OnInit {
 
     dataUser ;
+    cid ;
     nameAndsurname ;
     hospitalnumber ;
     gender ;
@@ -35,6 +38,7 @@ export class loginProfileComponent implements OnInit {
         console.log(this.dataUser.dataset.hn)
         this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
         this.hospitalnumber = this.dataUser.dataset.hn
+        this.cid = this.dataUser.dataset.cid
         this.gender = "เพศ " + this.dataUser.dataset.gender
         this.dob = "วันเกิด " + this.dataUser.dataset.dob
         if (this.dataUser.dataset.blood == null) {
@@ -54,6 +58,11 @@ export class loginProfileComponent implements OnInit {
             route.url.subscribe((s:UrlSegment[]) => {
                 console.log("url", s);
             });
+    }
+
+    conweb () {
+
+        utils.openUrl("https://newsbhu.firebaseapp.com/#/")
     }
 
     logout () {

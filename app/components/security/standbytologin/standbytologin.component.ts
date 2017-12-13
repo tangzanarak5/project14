@@ -9,6 +9,7 @@ import { idp } from "../model/idp.model"
 import { standbytologinService } from "./standbytologin.service";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
+import * as tabViewModule from "tns-core-modules/ui/tab-view";
 
 @Component({
     selector: "standbytologin",

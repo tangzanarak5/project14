@@ -18,6 +18,11 @@
     font-weight: 1000;
     font-size: 18px;
 }
+.Cloud-LightLogout {
+    font-family: "Cloud-Light" ;
+    font-weight: 800;
+    font-size: 16px;
+}
 .setLabel {
     margin-left: 35%;
 }
