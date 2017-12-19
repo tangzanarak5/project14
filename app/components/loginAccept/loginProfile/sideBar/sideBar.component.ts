@@ -1,30 +1,31 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 import { Router, ActivatedRoute, UrlSegment } from "@angular/router";
 import { ModalDialogParams } from "nativescript-angular/directives/dialogs";
 import { ViewContainerRef } from "@angular/core";
-import { securityService } from "../../security/security.service";
+import { securityService } from "../../../security/security.service";
 import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
-import { loginProfileService } from "./loginProfile.service";
+import { loginProfileService } from "../loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
 import * as dialogs from "ui/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
 import * as utils from "utils/utils";
+import { ViewChild, AfterViewInit, ChangeDetectorRef } from "@angular/core";
 import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
-import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 
 @Component({
-    selector: "loginProfile",
-    templateUrl: "loginProfile.component.html",
-    styleUrls: ['loginProfile.component.css'],
+    selector: "sidebar",
+    templateUrl: "sideBar.component.html",
+    styleUrls: ['sideBar.component.css'],
     moduleId: module.id
 })
 
 
-export class loginProfileComponent implements OnInit {
-
+export class sideBarComponent implements AfterViewInit, OnInit {
     dataUser ;
     cid ;
     nameAndsurname ;
@@ -33,14 +34,37 @@ export class loginProfileComponent implements OnInit {
     dob ;
     blood ;
     isLoading = true ;
+    private _mainContentText: string;
 
-    @ViewChild('sidebar') sideBar: sideBarComponent
+    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
 
-    openDrawer () {
-        this.sideBar.openDrawer();
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
+    }
+
+    get mainContentText() {
+        return this._mainContentText;
+    }
+
+    set mainContentText(value: string) {
+        this._mainContentText = value;
+    }
+
+     openDrawer() {
+        this.drawer.showDrawer();
+    }
+
+     onCloseDrawerTap() {
+       this.drawer.closeDrawer();
+    }
+    test () {
+        console.log("eiei");
     }
 
     ngOnInit(): void {
+        this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
         if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
@@ -57,21 +81,11 @@ export class loginProfileComponent implements OnInit {
     }
 
     constructor(
-        private modal: ModalDialogService,
-        private vcRef: ViewContainerRef,
+        private _changeDetectionRef: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router,
-        private loginProfileService: loginProfileService,
         page: Page) {
-            page.actionBarHidden = true;
-            route.url.subscribe((s:UrlSegment[]) => {
-                console.log("url", s);
-            });
-    }
-
-    conweb () {
-
-        utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+    
     }
 
     logout () {

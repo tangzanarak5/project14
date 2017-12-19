@@ -1,0 +1,48 @@
+
+        <RadSideDrawer tkExampleTitle tkToggleNavButton showOverNavigation="true" drawerContentSize="320">
+            <StackLayout tkDrawerContent class="sideStackLayout bgWhite">
+                <StackLayout orientation="vertical" horizontalAlignment="left">
+                        <WrapLayout orientation="horizontal">
+                        <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                <label height="20"></label>
+                        </WrapLayout>
+                
+                        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
+                        </WrapLayout>
+                
+                        <WrapLayout orientation="horizontal" width="20%" class="bg">
+                                <Image src="~/images/logo app.png" ></Image>
+                        </WrapLayout>
+                
+                        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
+                        </WrapLayout>
+                
+                        <WrapLayout orientation="horizontal" width="75%" class="bg">
+                
+                                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                        <label height="2"></label>
+                                </WrapLayout>
+                
+                                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                        <label class = "Cloud-Light" [text]="hospitalnumber" style="color: white;"></label>
+                                </WrapLayout>
+                
+                                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                        <label class = "Cloud-Light" [text]="nameAndsurname" style="color: white;"></label>  
+                                </WrapLayout>
+                
+                                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                        <label class = "Cloud-Light" [text]="cid" style="color: white;"></label>
+                                </WrapLayout>
+                                <WrapLayout orientation="horizontal" width="100%" class="bg">
+                                                <label height="20"></label>
+                                        </WrapLayout>
+                        </WrapLayout>
+                        </WrapLayout>
+                </StackLayout>
+                <StackLayout class="sideStackLayout">
+                        <Button class = "btn btn-primary sizeLogin Cloud-LightLogout" text=" ออกจากระบบ" style="color: red;" (tap) = "logout()"></Button>
+                </StackLayout>
+               
+            </StackLayout>
+        </RadSideDrawer> 

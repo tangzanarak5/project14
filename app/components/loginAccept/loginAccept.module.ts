@@ -8,6 +8,8 @@ import { LoginAcceptRouting } from "../loginAccept/loginAccept.routing";
 import { loginAcceptComponent } from "../loginAccept/loginAccept.component";
 import { loginProfileComponent } from "../loginAccept/loginProfile/loginProfile.component";
 import { loginProfileService } from "../loginAccept/loginProfile/loginProfile.service";
+import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
+import { sideBarComponent } from "../loginAccept/loginProfile/sideBar/sideBar.component";
 
 @NgModule({
 
@@ -15,10 +17,12 @@ import { loginProfileService } from "../loginAccept/loginProfile/loginProfile.se
         NativeScriptModule,
         LoginAcceptRouting,
         NativeScriptFormsModule,
+        NativeScriptUISideDrawerModule
     ],
     declarations: [
         loginProfileComponent,
-        loginAcceptComponent
+        loginAcceptComponent,
+        sideBarComponent
     ],
     providers: [
         ModalDialogService,

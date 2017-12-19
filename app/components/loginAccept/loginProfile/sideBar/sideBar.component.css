@@ -1,3 +1,6 @@
+.bgWhite {
+    background-color: white;
+}
 .sizePicture {
     margin-top: -325px;
     height: 25%;
@@ -106,4 +109,9 @@ titleMargin {
 .Button {
     color: red;
     background-color: #ffffff;
+}
+.sizeLogin {
+    background-color: rgb(225, 230, 229);
+    width: 75%;
+    font-size: 18px;
 }
