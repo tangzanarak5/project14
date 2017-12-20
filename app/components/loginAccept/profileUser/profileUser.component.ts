@@ -6,7 +6,7 @@ import { ViewContainerRef } from "@angular/core";
 import { securityService } from "../../security/security.service";
 import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
-import { loginProfileService } from "./loginProfile.service";
+import { loginProfileService } from "../loginProfile/loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
 import * as dialogs from "ui/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
@@ -15,17 +15,16 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
-import * as activityIndicatorModule from "tns-core-modules/ui/activity-indicator";
 
 @Component({
-    selector: "loginProfile",
-    templateUrl: "loginProfile.component.html",
-    styleUrls: ['loginProfile.component.css'],
+    selector: "profileUser",
+    templateUrl: "profileUser.component.html",
+    styleUrls: ['profileUser.component.css'],
     moduleId: module.id
 })
 
 
-export class loginProfileComponent implements OnInit {
+export class profileUserComponent implements OnInit {
 
     dataUser ;
     cid ;
@@ -35,7 +34,16 @@ export class loginProfileComponent implements OnInit {
     dob ;
     blood ;
     isLoading = true ;
-
+    labelHN ;
+    labelName;
+    labelLastName;
+    labelBirthday;
+    labelGender;
+    labelID;
+    labelNation;
+    labelAddress;
+    labelPhone;
+    barcode ;
     @ViewChild('sidebar') sideBar: sideBarComponent
 
     openDrawer () {
@@ -43,6 +51,7 @@ export class loginProfileComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
         if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
@@ -52,6 +61,9 @@ export class loginProfileComponent implements OnInit {
         this.cid = this.dataUser.dataset.cid
         this.gender = "เพศ " + this.dataUser.dataset.gender
         this.dob = "วันเกิด " + this.dataUser.dataset.dob
+        this.barcode = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=" + this.hospitalnumber + "&code=Code39&multiplebarcodes=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" ;
+ 
+
         if (this.dataUser.dataset.blood == null) {
             this.blood = "เลือด -"
         }
@@ -71,30 +83,10 @@ export class loginProfileComponent implements OnInit {
                 console.log("url", s);
             });
     }
-
-    tobeContinue () {
-        alert("เมนูนี้ยังไม่เปิดให้ใช้บริการ");
-    }
-
-    toProfileUser () {
-        this.isLoading = false;
-        console.log("connect");
-        this.router.navigate(["/profileUser"]);
-    }
-
     toHome () {
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
     }
-
-    news () {
-
-        utils.openUrl("https://newsbhu.firebaseapp.com/#/")
-    }
-    web () {
-        
-                utils.openUrl("https://www.cpa.go.th//#/")
-            }
 
     logout () {
         dialogs.confirm({

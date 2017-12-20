@@ -16,6 +16,7 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "sidebar",
@@ -34,6 +35,7 @@ export class sideBarComponent implements AfterViewInit, OnInit {
     dob ;
     blood ;
     isLoading = true ;
+    barcode ;
     private _mainContentText: string;
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -71,6 +73,7 @@ export class sideBarComponent implements AfterViewInit, OnInit {
         console.log(this.dataUser.dataset.hn)
         this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
         this.hospitalnumber = this.dataUser.dataset.hn
+        this.barcode = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=" + this.hospitalnumber + "&code=Code39&multiplebarcodes=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" ;
         this.cid = this.dataUser.dataset.cid
         this.gender = "เพศ " + this.dataUser.dataset.gender
         this.dob = "วันเกิด " + this.dataUser.dataset.dob
@@ -81,13 +84,30 @@ export class sideBarComponent implements AfterViewInit, OnInit {
     }
 
     constructor(
+        private fonticon: TNSFontIconService,
         private _changeDetectionRef: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router,
         page: Page) {
     
     }
-
+    tobeContinue () {
+        alert("เมนูนี้ยังไม่เปิดให้ใช้บริการ");
+    }
+    home () {
+        this.drawer.closeDrawer();
+        this.router.navigate(["/loginProfile"]);
+    }
+    toProfileUser () {
+        this.drawer.closeDrawer();
+        this.router.navigate(["/profileUser"]);
+    }
+    news () {
+             utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+        }
+    web () { 
+            utils.openUrl("https://www.cpa.go.th//#/")
+         }
     logout () {
         dialogs.confirm({
             title: "ออกจากระบบ",

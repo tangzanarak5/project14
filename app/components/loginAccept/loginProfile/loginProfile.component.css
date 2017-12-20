@@ -11,15 +11,22 @@
 .bgWhite {
     background-color: white;
 }
+.Cloud-Light2 {
+    font-family: "Cloud-Light" ;
+    font-weight: 800;
+    font-size: 14px;
+    margin-left: 20%;
+}
 .Cloud-Light {
     font-family: "Cloud-Light" ;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 14px;
+    margin-left: 35%;
 }
 .Cloud-Lights {
     font-family: "Cloud-Light" ;
-    font-weight: 1000;
-    font-size: 18px;
+    font-weight: 800;
+    font-size: 20px;
 }
 .Cloud-LightLogout {
     font-family: "Cloud-Light" ;
@@ -106,4 +113,38 @@ titleMargin {
 .Button {
     color: red;
     background-color: #ffffff;
+}
+.mdi {
+    font-family: "Material Icons", "MaterialIcons-Regular";
+    font-size: 36px;
+    color: white;
+  }
+  .opa {
+      opacity: 0.2;
+      height: 55%;
+      width: 55% ;
+  }
+.bdr{
+    border-right-width: 1px;
+    border-color: lightgray;
+}
+.bdl{
+    border-left-width: 1px;
+    border-color: lightgray;
+}
+.bdt{
+    border-top-width: 1px;
+    border-color: lightgray;
+}
+.bdb{
+    border-bottom-width: 1px;
+    border-color: lightgray;
+}
+.imgSize {
+    width:50% ;
+    height:10% ;
+    margin-left: 25%;
+}
+.fix{
+    position: fixed;
 }

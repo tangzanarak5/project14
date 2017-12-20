@@ -10,6 +10,8 @@ import { loginProfileComponent } from "../loginAccept/loginProfile/loginProfile.
 import { loginProfileService } from "../loginAccept/loginProfile/loginProfile.service";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 import { sideBarComponent } from "../loginAccept/loginProfile/sideBar/sideBar.component";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
+import { profileUserComponent } from "../loginAccept/profileUser/profileUser.component";
 
 @NgModule({
 
@@ -17,12 +19,16 @@ import { sideBarComponent } from "../loginAccept/loginProfile/sideBar/sideBar.co
         NativeScriptModule,
         LoginAcceptRouting,
         NativeScriptFormsModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'
+          })
     ],
     declarations: [
         loginProfileComponent,
         loginAcceptComponent,
-        sideBarComponent
+        sideBarComponent,
+        profileUserComponent
     ],
     providers: [
         ModalDialogService,
