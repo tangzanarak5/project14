@@ -1,6 +1,6 @@
 <sidebar #sidebar></sidebar>
 
-<StackLayout *ngIf="isLoading">
+<StackLayout>
 <WrapLayout class="fix" orientation="horizontal">
                 
 
@@ -34,15 +34,7 @@
                 <label height="15"></label>
         </WrapLayout>
 </WrapLayout>
-<!-- <label [text]="labelHN" class="bgLabel Cloud-Lights"></label>
-<label [text]="labelName" class="Cloud-Lights"></label>
-<label [text]="labelLastName" class="bgLabel Cloud-Lights"></label>
-<label [text]="labelGender"  class="Cloud-Lights"></label>
-<label [text]="labelBirthday" class="bgLabel Cloud-Lights"></label>
-<label [text]="labelID"  class="Cloud-Lights"></label>
-<label [text]="labelNation" class="bgLabel Cloud-Lights"></label>
-<label [text]="labelAddress"  class="Cloud-Lights"></label>
-<label [text]="labelPhone" class="bgLabel Cloud-Lights"></label> -->
+
 <WrapLayout width="100%">
                 <WrapLayout width="100%">
                         <Label text=" "></Label>                   
@@ -183,10 +175,4 @@
 <Label text=" "></Label>
 <Image class="img" [src]="barcode" ></Image>      
           
-</StackLayout>
-
-<StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
-             
-                <ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator textgray"></ActivityIndicator>
-                
 </StackLayout>

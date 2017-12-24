@@ -1,6 +1,6 @@
 <Page>
     <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <StackLayout class="Cloud-Light" *ngIf="isLoading">
+    <StackLayout class="Cloud-Light">
 
         <StackLayout class="StackBg">
                 <WrapLayout orientation="horizontal">
@@ -24,11 +24,6 @@
         <Label text = "ผู้ป่วยใหม่?" class="marginMiddle sizeFont" style="color: rgb(48, 97, 150);" [nsRouterLink]="['../newPatient']"></Label>
     </StackLayout>
 
-</StackLayout>
-<StackLayout sdkExampleTitle sdkToggleNavButton horizontalAlignment="center" verticalAlignment="center" *ngIf="!isLoading">
-        <!-- >> activity-indicator-setting-busy-html -->
-        <ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator textgray"></ActivityIndicator>
-        <!-- << activity-indicator-setting-busy-html -->
 </StackLayout>
     </ScrollView>
 </Page>

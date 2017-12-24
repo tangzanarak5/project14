@@ -17,6 +17,7 @@ import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "sidebar",
@@ -37,6 +38,34 @@ export class sideBarComponent implements AfterViewInit, OnInit {
     isLoading = true ;
     barcode ;
     private _mainContentText: string;
+
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
@@ -95,18 +124,29 @@ export class sideBarComponent implements AfterViewInit, OnInit {
         alert("เมนูนี้ยังไม่เปิดให้ใช้บริการ");
     }
     home () {
+        this.loader.show(this.options);
         this.drawer.closeDrawer();
         this.router.navigate(["/loginProfile"]);
+        this.loader.hide();
     }
     toProfileUser () {
+        this.loader.show(this.options);
         this.drawer.closeDrawer();
+        console.log("connect");
         this.router.navigate(["/profileUser"]);
+        this.loader.hide();
     }
     news () {
-             utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+        this.loader.show(this.options);
+        this.drawer.closeDrawer();
+        utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+        this.loader.hide();
         }
     web () { 
-            utils.openUrl("https://www.cpa.go.th//#/")
+        this.loader.show(this.options);
+        this.drawer.closeDrawer();
+        utils.openUrl("https://www.cpa.go.th//#/")
+        this.loader.hide();
          }
     logout () {
         dialogs.confirm({
@@ -120,7 +160,10 @@ export class sideBarComponent implements AfterViewInit, OnInit {
                 this.isLoading = false ;
                 securityService.setIsLogin = ""
                 securityService.setDataUser = ""
+                this.loader.show(this.options);
+                this.drawer.closeDrawer();
                 this.router.navigate(["/security/standbytologin"]);
+                this.loader.hide();
             }
         });  
     }

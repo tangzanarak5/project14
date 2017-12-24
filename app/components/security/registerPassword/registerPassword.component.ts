@@ -7,6 +7,7 @@ import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
 import { ActivityIndicator } from "ui/activity-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "registerPassword",
@@ -24,7 +25,34 @@ export class registerPasswordComponent implements OnInit {
     samePassword = "" ;
     splitPassword;
     sumPassword ="";
-    isLoading = true ;
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
+
  constructor(
     page: Page,
     private router: Router,
@@ -45,7 +73,7 @@ ngOnInit(): void {
 }
 
 checkPassword () {
-    
+    this.loader.show(this.options);
      this.splitPassword = this.password.split("");
    
      for(let i=0;i<this.splitPassword.length;i++){
@@ -256,7 +284,7 @@ checkPassword () {
             else{
                 if(this.sumPassword.length >= 6){
               
-                this.isLoading = false ;  // alert("ผ่าน");
+                //this.loader.show(this.options);  // alert("ผ่าน");
                 console.log(this.sumPassword);
                 this.firebase.push(
                     '/registerUsers',
@@ -274,7 +302,7 @@ checkPassword () {
                 this.checkRegister.hn = "";
                 securityService.setCheckRegister = JSON.stringify(this.checkRegister);
                 this.router.navigate(["/security/registerSuccess"])
-                this.isLoading = true ;
+                this.loader.hide();
                 }
                 else{
                     alert("กรุณาตั้งรหัสผ่านอย่างน้อย 6 ตัว");
@@ -284,17 +312,21 @@ checkPassword () {
         }
         if (this.password != this.samePassword) {
           alert("รหัสผ่านไม่ถูกต้อง");
+          this.loader.hide();
         }
     }
     else {
         if (this.password == "" && this.samePassword != ""){
             alert("กรุณาใส่รหัสผ่าน");
+            this.loader.hide();
         }
         if (this.password != "" && this.samePassword == ""){
             alert("กรุณาใส่ยืนยันรหัสผ่าน");
+            this.loader.hide();
         }
         if (this.password == "" && this.samePassword == ""){
             alert("กรุณาใส่รหัสผ่าน");
+            this.loader.hide();
         }
     }
 }

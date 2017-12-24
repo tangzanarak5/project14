@@ -9,7 +9,8 @@ import { Image } from "ui/image";
 import * as dialogs from "ui/dialogs";
 import { formPicAndAcceptService } from "./formPicAndAccept.service";
 import * as imagepicker from "nativescript-imagepicker";
-import imageSource = require("image-source")
+import imageSource = require("image-source");
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "formPicAndAccept",
@@ -25,7 +26,34 @@ export class formPicAndAcceptComponent implements OnInit {
     image ;
     pathimg ;
     pathcommit ;
-    isLoading = true ;
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
+
     constructor(
         private formPicAndAcceptService: formPicAndAcceptService,
         private route: ActivatedRoute,
@@ -190,7 +218,7 @@ changeImg () {
             tns.user.pic = "";
             securityService.setUserData = JSON.stringify(tns.user);
             tns.router.navigate(["/security/subMitForm"]);
-            tns.isLoading = true ;
+            this.loader.hide();
           },
           function (error) {
             console.log("File upload error: " + error);
@@ -221,30 +249,8 @@ nextToSymptom () {
             // result argument is boolean
             console.log("Dialog result: " + result);
             if (result == false) {
-                this.isLoading = false ;
-               this.upload() ;
-                
-                // securityService.setUserData = JSON.stringify(this.user);
-                // this.formPicAndAcceptService.postDataPatient();
-                // this.user.idCard = "";
-                // this.user.nameTitle = "";
-                // this.user.name = "";
-                // this.user.surname = "" ;
-                // this.user.gender = "" ;
-                // this.user.birthDay = "";
-                // this.user.nation = "" ;
-                // this.user.religion = "" ;
-                // this.user.address = "" ;
-                // this.user.telephone = "" ;
-                // this.user.medicalEligibilityVerification = "" ;
-                // this.user.symptom = "" ;
-                // this.user.nameRelative = "" ;
-                // this.user.surnameRelative = "" ;
-                // this.user.contact = "" ;
-                // this.user.telephoneRelative = "" ;
-                // this.user.pic = "";
-                // securityService.setUserData = JSON.stringify(this.user);
-                // this.router.navigate(["/security/subMitForm"]);
+                this.loader.show(this.options);
+                this.upload() ;
             
             }
         });   
@@ -261,10 +267,6 @@ dialogAgree () {
     }).then(() => {
         console.log("Dialog closed!");
     });
-}
-
-tangza() {
-console.log("ri");
 }
     
 }

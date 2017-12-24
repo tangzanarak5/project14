@@ -15,6 +15,7 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "profileUser",
@@ -44,6 +45,34 @@ export class profileUserComponent implements OnInit {
     labelAddress;
     labelPhone;
     barcode ;
+    loader = new LoadingIndicator();
+
+    options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
+
     @ViewChild('sidebar') sideBar: sideBarComponent
 
     openDrawer () {
@@ -51,7 +80,7 @@ export class profileUserComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
+
         if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));

@@ -9,6 +9,7 @@ import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
 import { ActivityIndicator } from "ui/activity-indicator";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "registerAccount",
@@ -26,7 +27,33 @@ export class registerAccountComponent implements OnInit {
     idCard = "";
     hn;
     dataUser ;
-    isLoading = true ;
+    loader = new LoadingIndicator();
+
+    options = {
+       message: 'Loading...',
+       progress: 0.65,
+       android: {
+         indeterminate: true,
+         cancelable: true,
+         cancelListener: function(dialog) { console.log("Loading cancelled") },
+         max: 100,
+         progressNumberFormat: "%1d/%2d",
+         progressPercentFormat: 0.53,
+         progressStyle: 1,
+         secondaryProgress: 1
+       },
+       ios: {
+         details: "Additional detail note!",
+         margin: 10,
+         dimBackground: true,
+         color: "#4B9ED6", // color of indicator and labels
+         // background box around indicator
+         // hideBezel will override this if true
+         backgroundColor: "yellow",
+         userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+         hideBezel: true, // default false, can hide the surrounding bezel
+       }
+     };
 
     ngOnInit(): void {
         this.checkRegister = new checkRegister();
@@ -83,7 +110,7 @@ export class registerAccountComponent implements OnInit {
 
     getDataPeople () {
         let tns = this ;
-        this.isLoading = false ;
+        this.loader.show(this.options);
         this.registerAccountService.getDataPatient()
         .subscribe(
             (Response) => {
@@ -98,22 +125,22 @@ export class registerAccountComponent implements OnInit {
                           let resultUserUsername = results.find(item => item.hn === Response.dataset.hn.toString());
 
                           if(resultUserUsername){
-                            this.isLoading = true ;
                             alert("ไม่สามารถทำการลงทะเบียนได้\nหมายเลขประจำตัวผู้ป่วยนี้มีอยู่ในระบบแล้ว");
+                            this.loader.hide();
                           }
                           else {
                                 this.router.navigate(["/security/registerPassword"]);
-                                this.isLoading = true ;
+                                this.loader.hide();
                             }
                 }
                 else {
-                    this.isLoading = true ;
                     alert('กรุณาใส่หมายเลขบัตรประชาชนและหมายเลข HN ให้ถูกต้อง');
+                    this.loader.hide();
                 }
             },
             (error) => {
-                this.isLoading = true ;
                 alert("Get Error");
+                this.loader.hide();
             }
         )
         
@@ -133,6 +160,7 @@ net () {
     this.router.navigate(["/security/registerPassword"]);
 }
 checkIdCardAndHn () {
+        this.loader.hide();
         let test = this.checkRegister.idCard.length
         if (this.checkRegister.idCard != "" && this.checkRegister.hn != ""){
         if (test != 13) {

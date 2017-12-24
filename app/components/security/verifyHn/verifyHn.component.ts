@@ -9,6 +9,7 @@ import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { checkHn } from "../model/checkHn.model"
 import { ActivityIndicator } from "ui/activity-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "verifyHn",
@@ -22,7 +23,34 @@ export class VerifyHnComponent implements OnInit {
     checkHn: checkHn;
     hospitalNumber ;
     res ;
-    isLoading = true ;
+    loader = new LoadingIndicator();
+    
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
+
     constructor(
         page: Page,
         private router: Router,
@@ -48,13 +76,13 @@ export class VerifyHnComponent implements OnInit {
     getHospitalNumber () {
 
         let nts = this ;
-        this.isLoading = false ;
+        this.loader.show(this.options);
         this.verifyHnService.getDataPatient()
         .subscribe(
             (Response) => {
                 if (Response.dataset.cid == nts.checkHn.idCard) {
                     if(Response.dataset.hn != null){
-                    this.isLoading = true ;
+                    this.loader.hide();
                     console.log('yes');
                     this.hospitalNumberActionDialog(Response.dataset.hn.toString());
                     this.checkHn.idCard = "";
@@ -67,7 +95,7 @@ export class VerifyHnComponent implements OnInit {
                         cancelButtonText: "ตกลง",
                         actions: ["ไม่พบหมายเลขประจำตัวผู้ป่วย"]
                     };
-                    this.isLoading = true ;
+                    this.loader.hide();
                         console.log('no'); action(noData)}
                 }
                 else {
@@ -76,7 +104,7 @@ export class VerifyHnComponent implements OnInit {
                         (Response) => {
                             if (Response.dataset.cid == nts.checkHn.idCard) {
                                 
-                                this.isLoading = true ;
+                                this.loader.hide();
                                 console.log('yes');
                                 this.hospitalNumberActionDialog(Response.dataset.hn.toString());
                                 this.checkHn.idCard = "";
@@ -85,6 +113,7 @@ export class VerifyHnComponent implements OnInit {
                         },
                         (error) => {
                             alert("Get Error");
+                            this.loader.hide();
                         }
                     )
             }
@@ -92,6 +121,7 @@ export class VerifyHnComponent implements OnInit {
             },
             (error) => {
                 alert("Get Error");
+                this.loader.hide();
             }
         )
         
@@ -105,6 +135,7 @@ export class VerifyHnComponent implements OnInit {
         action(options)
     }
     checkIdCard () {
+        this.loader.hide();
         let test = this.checkHn.idCard.length
         
         if (test != 13) {

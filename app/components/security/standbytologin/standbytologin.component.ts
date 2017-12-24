@@ -9,6 +9,7 @@ import { idp } from "../model/idp.model"
 import { standbytologinService } from "./standbytologin.service";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "standbytologin",
@@ -25,7 +26,33 @@ export class StandByToLoginComponent implements OnInit {
     connect = false ;
     dataUser ;
     datasUser ;
-    isLoading = true ;
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
 
     constructor(
         private modal: ModalDialogService,
@@ -106,7 +133,7 @@ export class StandByToLoginComponent implements OnInit {
                     console.log("username connect");
                     let resultUserPassword = results.find(item => item.pass === tns.idp.password);
                if (resultUserPassword) {
-                    this.isLoading = false ;
+                    this.loader.show(this.options);
                     this.idp.isLogin = true ;
                     console.log("password connect");
                     securityService.setIdp = JSON.stringify(tns.idp);
@@ -120,10 +147,11 @@ export class StandByToLoginComponent implements OnInit {
                           tns.datasUser = JSON.parse(securityService.getDataUser);
                           console.log(JSON.stringify(tns.dataUser));
                           tns.router.navigate(["/loginAccept"]);
+                          this.loader.hide();
                         },
                         (error) => {
                             securityService.setIsLogin = "false";
-                            this.isLoading = true ;
+                            this.loader.hide();
                             alert("ไม่สามารถเชื่อต่อได้");
                         }
                     )

@@ -10,6 +10,7 @@ import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { formDateComponent } from "../formProfileRecord/formDate.component";
 import { securityService } from "../security.service";
 import * as activityIndicatorModule from "tns-core-modules/ui/activity-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "formProfileRecord",
@@ -28,6 +29,34 @@ export class formProfileRecordComponent implements OnInit {
     showBirthDayZero = "" ;
     inputAlret = "";
     allBirthday = "";
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
+
     constructor(
         private modal: ModalDialogService,
         private vcRef: ViewContainerRef,
@@ -216,6 +245,7 @@ religionActionDialog() {
     });  
 }
 nextToAddress () {
+        this.loader.show(this.options);
         if (this.user.nameTitle == undefined || this.user.nameTitle == "" || this.user.nameTitle == null) {
         this.inputAlret = this.inputAlret + "\n- คำนำหน้าชื่อ"
         }
@@ -237,10 +267,12 @@ nextToAddress () {
         }
         if (this.inputAlret != "") {
             alert("กรุณาใส่ข้อมูลให้ครบ !\n" + this.inputAlret);
+            this.loader.hide();
         }
         if (this.inputAlret == ""){
             securityService.setUserData = JSON.stringify(this.user);
             this.router.navigate(["/security/formAddressRecord"]);
+            this.loader.hide();
         }
         this.inputAlret = "";
         

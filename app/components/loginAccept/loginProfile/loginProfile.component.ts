@@ -15,7 +15,7 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
-import * as activityIndicatorModule from "tns-core-modules/ui/activity-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Component({
     selector: "loginProfile",
@@ -34,7 +34,33 @@ export class loginProfileComponent implements OnInit {
     gender ;
     dob ;
     blood ;
-    isLoading = true ;
+    loader = new LoadingIndicator();
+
+     options = {
+        message: 'Loading...',
+        progress: 0.65,
+        android: {
+          indeterminate: true,
+          cancelable: true,
+          cancelListener: function(dialog) { console.log("Loading cancelled") },
+          max: 100,
+          progressNumberFormat: "%1d/%2d",
+          progressPercentFormat: 0.53,
+          progressStyle: 1,
+          secondaryProgress: 1
+        },
+        ios: {
+          details: "Additional detail note!",
+          margin: 10,
+          dimBackground: true,
+          color: "#4B9ED6", // color of indicator and labels
+          // background box around indicator
+          // hideBezel will override this if true
+          backgroundColor: "yellow",
+          userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+          hideBezel: true, // default false, can hide the surrounding bezel
+        }
+      };
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
@@ -43,6 +69,7 @@ export class loginProfileComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
         if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
@@ -73,13 +100,16 @@ export class loginProfileComponent implements OnInit {
     }
 
     tobeContinue () {
+        this.loader.show(this.options);
         alert("เมนูนี้ยังไม่เปิดให้ใช้บริการ");
+        this.loader.hide();
     }
 
     toProfileUser () {
-        this.isLoading = false;
+        this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/profileUser"]);
+        this.loader.hide();
     }
 
     toHome () {
@@ -95,22 +125,5 @@ export class loginProfileComponent implements OnInit {
         
                 utils.openUrl("https://www.cpa.go.th//#/")
             }
-
-    logout () {
-        dialogs.confirm({
-            title: "ออกจากระบบ",
-            cancelButtonText: "ตกลง",
-            okButtonText: "ยกเลิก"
-        }).then(result => {
-            // result argument is boolean
-            console.log("Dialog result: " + result);
-            if (result == false) {
-                this.isLoading = false ;
-                securityService.setIsLogin = ""
-                securityService.setDataUser = ""
-                this.router.navigate(["/security/standbytologin"]);
-            }
-        });  
-    }
 
  }
