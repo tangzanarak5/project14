@@ -114,24 +114,9 @@ export class profileUserComponent implements OnInit {
     }
     toHome () {
         console.log("connect");
+        this.loader.show(this.options);
         this.router.navigate(["/loginProfile"]);
-    }
-
-    logout () {
-        dialogs.confirm({
-            title: "ออกจากระบบ",
-            cancelButtonText: "ตกลง",
-            okButtonText: "ยกเลิก"
-        }).then(result => {
-            // result argument is boolean
-            console.log("Dialog result: " + result);
-            if (result == false) {
-                this.isLoading = false ;
-                securityService.setIsLogin = ""
-                securityService.setDataUser = ""
-                this.router.navigate(["/security/standbytologin"]);
-            }
-        });  
+        this.loader.hide();
     }
 
  }

@@ -113,17 +113,21 @@ export class loginProfileComponent implements OnInit {
     }
 
     toHome () {
+        this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
+        this.loader.hide();
     }
 
     news () {
-
-        utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+        this.loader.show(this.options);
+        utils.openUrl("https://newsbhu.firebaseapp.com/#/");
+        this.loader.hide();
     }
     web () {
-        
-                utils.openUrl("https://www.cpa.go.th//#/")
-            }
+        this.loader.show(this.options);
+        utils.openUrl("https://www.cpa.go.th//#/");
+        this.loader.hide();
+    }
 
  }

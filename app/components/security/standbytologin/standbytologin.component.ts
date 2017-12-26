@@ -9,7 +9,12 @@ import { idp } from "../model/idp.model"
 import { standbytologinService } from "./standbytologin.service";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
-import {LoadingIndicator} from "nativescript-loading-indicator";
+import {LoadingIndicator} from "nativescript-loading-indicator"
+import {topmost} from "ui/frame";
+import { RouterExtensions } from "nativescript-angular";
+import * as application from "application";
+import { AndroidApplication, AndroidActivityBackPressedEventData } from "application";
+import { isAndroid } from "platform";
 
 @Component({
     selector: "standbytologin",
@@ -19,6 +24,8 @@ import {LoadingIndicator} from "nativescript-loading-indicator";
 })
 
 export class StandByToLoginComponent implements OnInit {
+
+    
 
     public firebase = require("nativescript-plugin-firebase");
 
@@ -59,10 +66,27 @@ export class StandByToLoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private standbytologinService: standbytologinService,
-        page: Page) {
+        page: Page,
+        private androidapplication:AndroidApplication
+    ) {
         page.actionBarHidden = true;
+        this.androidapplication.on("activityBackPressed",()=>{
+            console.log("back pressed");
+
+        })
+        
     }
     ngOnInit(): void {
+
+        if (!isAndroid) {
+            return;
+          }
+          application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+            if (this.router.isActive("/articles", false)) {
+              data.cancel = true; // prevents default back button behavior
+              console.log("logout");
+            }
+          });
         
         this.firebase.init({
           storageBucket: "gs://fir-appproject14.appspot.com"
@@ -155,9 +179,7 @@ export class StandByToLoginComponent implements OnInit {
                             alert("ไม่สามารถเชื่อต่อได้");
                         }
                     )
-
-                   
-                    
+    
                }
                else {
                    console.log("password fail");
@@ -168,10 +190,7 @@ export class StandByToLoginComponent implements OnInit {
                  console.log("username fail");
                  alert("กรุณาใส่หมายเลข HN และ รหัสผ่าน ให้ถูกต้อง");
                 }
-             //console.log(JSON.stringify(resultUserData.password))
-        
+
         }
-        // check () {
-        //     this.router.navigate(["/security/loginProfile"]);
-        // }
+
  }

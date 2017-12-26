@@ -279,12 +279,12 @@ checkPassword () {
                 alert(this.sumPassword)
                 console.log(this.sumPassword);
                 this.sumPassword = "";
+                this.loader.hide();
             }
             
             else{
                 if(this.sumPassword.length >= 6){
-              
-                //this.loader.show(this.options);  // alert("ผ่าน");
+
                 console.log(this.sumPassword);
                 this.firebase.push(
                     '/registerUsers',

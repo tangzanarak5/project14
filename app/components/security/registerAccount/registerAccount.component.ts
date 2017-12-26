@@ -110,7 +110,6 @@ export class registerAccountComponent implements OnInit {
 
     getDataPeople () {
         let tns = this ;
-        this.loader.show(this.options);
         this.registerAccountService.getDataPatient()
         .subscribe(
             (Response) => {
@@ -156,15 +155,15 @@ export class registerAccountComponent implements OnInit {
         console.log("url", s);
     });
 }
-net () {
-    this.router.navigate(["/security/registerPassword"]);
-}
+
 checkIdCardAndHn () {
-        this.loader.hide();
+        this.loader.show(this.options);
+       
         let test = this.checkRegister.idCard.length
         if (this.checkRegister.idCard != "" && this.checkRegister.hn != ""){
         if (test != 13) {
             alert("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
+            this.loader.hide();
         }
         if (test == 13) {
         this.res = this.checkRegister.idCard.split("");
@@ -197,7 +196,8 @@ checkIdCardAndHn () {
            }
            else{
                 console.log("หมายเลขบัตรประชาชนไม่ถูกต้อง");
-                alert("หมายเลขบัตรประชาชนไม่ถูกต้อง")
+                alert("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                this.loader.hide();
            }
         }
         if(CheckDigit < 10){
@@ -209,10 +209,14 @@ checkIdCardAndHn () {
            else{
                 console.log("หมายเลขบัตรประชาชนไม่ถูกต้อง");
                 alert("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                this.loader.hide();
            }
         }
     }
     }
-    else {alert("กรุณาใส่หมายเลขบัตรประชาชนและหมายเลขHN")}
+    else {
+        alert("กรุณาใส่หมายเลขบัตรประชาชนและหมายเลขHN");
+        this.loader.hide();
+    }
 }
  }

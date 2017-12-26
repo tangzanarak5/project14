@@ -76,7 +76,7 @@ export class VerifyHnComponent implements OnInit {
     getHospitalNumber () {
 
         let nts = this ;
-        this.loader.show(this.options);
+        
         this.verifyHnService.getDataPatient()
         .subscribe(
             (Response) => {
@@ -135,11 +135,13 @@ export class VerifyHnComponent implements OnInit {
         action(options)
     }
     checkIdCard () {
-        this.loader.hide();
+        this.loader.show(this.options);
+        
         let test = this.checkHn.idCard.length
         
         if (test != 13) {
             alert("กรุณากรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก");
+            this.loader.hide();
         }
         if (test == 13) {
         this.res = this.checkHn.idCard.split("");
@@ -173,6 +175,7 @@ export class VerifyHnComponent implements OnInit {
            else{
                 console.log("หมายเลขบัตรประชาชนไม่ถูกต้อง");
                 alert("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                this.loader.hide();
            }
         }
         if(CheckDigit < 10){
@@ -183,7 +186,8 @@ export class VerifyHnComponent implements OnInit {
            }
            else{
                 console.log("หมายเลขบัตรประชาชนไม่ถูกต้อง");
-                alert("หมายเลขบัตรประชาชนไม่ถูกต้อง")
+                alert("หมายเลขบัตรประชาชนไม่ถูกต้อง");
+                this.loader.hide();
            }
         }
     }

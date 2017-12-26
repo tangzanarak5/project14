@@ -93,23 +93,11 @@ tackPic () {
             this.image.src = imageAsset;
             this.user.pic = "add pic"
             this.changeImg() ;
-            // console.log(imageAsset.android);
-            // console.log(Date.now());
-            //this.selectimg();
+ 
         }).catch((err) => {
             console.log("Error -> " + err.message);
         });
-    // camera.takePicture(options)
-    // .then((imageAsset) => {
-    //     console.log("Result is an image asset instance");
-    //     this.image.src = imageAsset;
-    //     console.log(imageAsset.android);
-    //     this.selectimg();
-    //     this.user.pic = JSON.stringify(this.image.src)
-    //     console.log(JSON.stringify(this.image.src));
-    // }).catch((err) => {
-    //     console.log("Error -> " + err.message)
-    // });
+
 }
 changeImg () {
     var fs = require("file-system");
@@ -126,44 +114,7 @@ changeImg () {
          }
      })
   }
-// selectimg () {
-//     var tns = this ;
-//     var fs = require("file-system");
-//     let context = imagepicker.create({
-//       mode: "single" // use "multiple" for multiple selection
-//   });
-//     context
-//     .authorize()
-//     .then(function() {
-//         return context.present();
-//     })
-//     .then(function(selection) {
-//         selection.forEach(function(selected) {
-//           selected.getImage()
-//           .then((imageSource) => {
-//               var appPath = fs.knownFolders.currentApp().path;
-//               var a = selected.fileUri;
-//               var picExt = a.substr(a.length-3, a.length).toLowerCase()
-//               var profilePath = a;
-//               console.log(profilePath);
-//               var filePath = fs.path.join(appPath, profilePath);
-//                //var saved = imageSource.saveToFile(filePath, "jpeg");
-//                //console.log("item saved:"+saved);
-//                console.log("FilePath: " + filePath);
-//                tns.pathimg = filePath;
-//                console.log("Image source " + JSON.stringify(imageSource));
-//                console.log(imageSource)
-//            },
-//            (error) => {
-//             console.log("error")
-//          })
 
-//         });
-//         // list.items = selection;
-//     }).catch(function (e) {
-//         // process error
-//     });
-//   }
   upload () {
       let tns = this ;
     // init the file-system module
@@ -218,7 +169,7 @@ changeImg () {
             tns.user.pic = "";
             securityService.setUserData = JSON.stringify(tns.user);
             tns.router.navigate(["/security/subMitForm"]);
-            this.loader.hide();
+            tns.loader.hide();
           },
           function (error) {
             console.log("File upload error: " + error);

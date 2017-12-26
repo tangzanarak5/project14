@@ -23,6 +23,7 @@ import { standbytologinService } from "./standbytologin/standbytologin.service";
 import { AuthGuard } from "../security/auth-guard.service";
 import { newPatientComponent } from "./newPatient/newPatient.component";
 import { registerSuccessComponent } from "../security/registerSuccess/registerSuccess.component";
+import {AndroidApplication} from "application";
 
 @NgModule({
     imports: [
@@ -43,8 +44,8 @@ import { registerSuccessComponent } from "../security/registerSuccess/registerSu
         formDateComponent,
         registerPasswordComponent,
         subMitFormComponent,
-        newPatientComponent,
-        registerSuccessComponent
+        registerSuccessComponent,
+        newPatientComponent
         
     ],
     providers: [
@@ -52,9 +53,10 @@ import { registerSuccessComponent } from "../security/registerSuccess/registerSu
         verifyHnService,
         registerAccountService,
         securityService,
-        formPicAndAcceptService,
+        formPicAndAcceptService, 
         standbytologinService,
-        AuthGuard
+        AuthGuard,
+        AndroidApplication
     ],
     schemas: [
         NO_ERRORS_SCHEMA

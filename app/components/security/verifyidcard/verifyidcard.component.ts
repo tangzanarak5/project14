@@ -73,12 +73,9 @@ export class verifyidcardComponent implements OnInit {
         console.log(securityService.getUserData);
         this.user = JSON.parse(securityService.getUserData);
     }
-    net () {
-        this.router.navigate(["/security/formProfileRecord"]);
-    }
+
     getDataPeople () {
         let nts = this ;
-        this.loader.show(this.options);
         this.verifyidcardService.getDataPatient()
         .subscribe(
             (Response) => {
@@ -134,6 +131,7 @@ export class verifyidcardComponent implements OnInit {
 }
  
     checkIdCard () {
+        this.loader.show(this.options);
         let test = this.user.idCard.length
         
         if (test != 13) {
