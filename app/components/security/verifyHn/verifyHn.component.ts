@@ -24,6 +24,7 @@ export class VerifyHnComponent implements OnInit {
     hospitalNumber ;
     res ;
     loader = new LoadingIndicator();
+    approved = "ยืนยันการลงทะเบียน"
     
      options = {
         message: 'Loading...',
@@ -81,19 +82,19 @@ export class VerifyHnComponent implements OnInit {
         .subscribe(
             (Response) => {
                 if (Response.dataset.cid == nts.checkHn.idCard) {
-                    if(Response.dataset.hn != null){
+                    if(Response.dataset.status == "approved"){
                     this.loader.hide();
                     console.log('yes');
-                    this.hospitalNumberActionDialog(Response.dataset.hn.toString());
+                    this.hospitalNumberActionDialogPreregister();
                     this.checkHn.idCard = "";
                     securityService.setUserData = JSON.stringify(this.checkHn);
                     }
 
                 else {
                         let noData = {
-                        title: "ลงทะเบียนไม่สำเร็จ",
+                        title: "ยืนยันลงทะเบียน",
                         cancelButtonText: "ตกลง",
-                        actions: ["ไม่พบหมายเลขประจำตัวผู้ป่วย"]
+                        actions: ["ไม่สำเร็จ รอการยืนยันจากเจ้าหน้าที่"]
                     };
                     this.loader.hide();
                         console.log('no'); action(noData)}
@@ -131,6 +132,14 @@ export class VerifyHnComponent implements OnInit {
             title: "ลงทะเบียนสำเร็จ",
             cancelButtonText: "ตกลง",
             actions: ["หมายเลขประจำตัวผู้ป่วย คือ " + hn]
+        };
+        action(options)
+    }
+    hospitalNumberActionDialogPreregister() {
+        let options = {
+            title: "ยืนยันลงทะเบียน",
+            cancelButtonText: "ตกลง",
+            actions: ["สำเร็จ รอรับหมายเลขประจำตัวผู้ป่วย"]
         };
         action(options)
     }
