@@ -6,7 +6,6 @@ import { ViewContainerRef } from "@angular/core";
 import { securityService } from "../../security/security.service";
 import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
-import { loginProfileService } from "./loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
 import * as dialogs from "ui/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
@@ -16,17 +15,24 @@ import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
-import { barCodeComponent } from "../loginProfile/barCode.component";
-import * as datePickerModule from "tns-core-modules/ui/date-picker";
+import {Input, ChangeDetectionStrategy} from '@angular/core';
+import * as observableArray from "tns-core-modules/data/observable-array";
+import * as labelModule from "tns-core-modules/ui/label";
+import * as listViewModule from "tns-core-modules/ui/list-view";
+
+class DataItem {
+    constructor(public id: number, public name: string) { }
+}
+
 @Component({
-    selector: "loginProfile",
-    templateUrl: "loginProfile.component.html",
-    styleUrls: ['loginProfile.component.css'],
+    selector: "appointment",
+    templateUrl: "appointment.component.html",
+    styleUrls: ['appointment.component.css'],
     moduleId: module.id
 })
 
 
-export class loginProfileComponent implements OnInit {
+export class appointmentComponent implements OnInit {
 
     dataUser ;
     cid ;
@@ -35,8 +41,26 @@ export class loginProfileComponent implements OnInit {
     gender ;
     dob ;
     blood ;
+    appoint1 = true;
+    appoint2 = false;
     loader = new LoadingIndicator();
-
+   
+    public myItems: Array<DataItem>;
+    private counter: number;
+    medicine = [
+        {
+            namee : "พฤหัสบดี 15 กุมภาพันธ์ 2561",
+            namet : "เวลา 09.00 น."
+        },
+        {
+            namee : "จันทร์ 19 กุมภาพันธ์ 2561",
+            namet : "เวลา 10.40 น."
+        },
+        {
+            namee : "อังคาร 20 กุมภาพันธ์ 2561",
+            namet : "เวลา 13.15 น."
+        }
+    ] ;
      options = {
         message: 'Loading...',
         progress: 0.65,
@@ -92,76 +116,51 @@ export class loginProfileComponent implements OnInit {
         private vcRef: ViewContainerRef,
         private route: ActivatedRoute,
         private router: Router,
-        private loginProfileService: loginProfileService,
         page: Page) {
-            
             route.url.subscribe((s:UrlSegment[]) => {
                 console.log("url", s);
             });
     }
 
-    toAppointment () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/appointment"]);
-        this.loader.hide();
-    }
-
-    toBlood () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/bloodResult"]);
-        this.loader.hide();
-    }
-
-    toCost () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/cost"]);
-        this.loader.hide();
-    }
-
-    toMedicine () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/medicine"]);
-        this.loader.hide();
-    }
-
-    toProfileUser () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/profileUser"]);
-        this.loader.hide();
-    }
-
-    toHome () {
-        this.loader.show(this.options);
+    toBack () {
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
-        this.loader.hide();
     }
 
-    news () {
+    change () {
+        this.appoint1 = false;
+        this.appoint2 = true;
+    }
+
+    public onItemTap2(args) {
+        console.log("------------------------ ItemTapped: " + args.index); 
         this.loader.show(this.options);
-        utils.openUrl("https://newsbhu.firebaseapp.com/#/");
-        this.loader.hide();
+        dialogs.confirm({
+            title: "เลื่อนนัดแพทย์",
+            message: "",
+            cancelButtonText: "ตกลง",
+            okButtonText: "ยกเลิก"
+        }).then(result => {
+            // result argument is boolean
+            console.log("Dialog result: " + result);
+            this.loader.hide();
+
+            if(result == false){
+                this.loader.show(this.options);
+                dialogs.confirm({
+                    title: "เลื่อนนัดแพทย์",
+                    message: "การเลื่อนนัดแพทย์สำเร็จ",
+                    cancelButtonText: "ตกลง"
+                }).then(result => {
+                    // result argument is boolean
+                    console.log("Dialog result: " + result);
+                    this.loader.hide();
+                    this.router.navigate(["/loginProfile"]);
+                });  
+            }
+
+        
+        });   
     }
-    web () {
-        this.loader.show(this.options);
-        utils.openUrl("https://www.cpa.go.th//#/");
-        this.loader.hide();
-    }
-    public showBarcode() {
-        console.log("barcode");
-        let options = {
-            context: {},
-            fullscreen: false,
-            viewContainerRef: this.vcRef
-        };
-        this.modal.showModal(barCodeComponent, options).then(res => {
- 
-            
-        });
-    }
+
  }

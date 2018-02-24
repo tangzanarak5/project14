@@ -12,22 +12,16 @@ export class verifyHnService {
     checkHn: checkHn;
     token = "a27cf250553d383da99d35260807f4bd2";
 
-    getDataPatient (): Observable<any> {
-        this.checkHn = new checkHn();
-        console.log(securityService.getCheckHn);
-        this.checkHn = JSON.parse(securityService.getCheckHn);
-        console.log(this.checkHn.idCard);
-        let url = "http://api.cpa.go.th/patient.php?token=" + this.token + "&request=get_preregister&cid=" + this.checkHn.idCard;
+    getDataPatient (hn): Observable<any> {
+        console.log(hn);
+        let url = "http://api.cpa.go.th/patient.php?token=" + this.token + "&request=get_preregister&cid=" + hn;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }
 
-    getDataPatientReal (): Observable<any> {
-        this.checkHn = new checkHn();
-        console.log(securityService.getCheckHn);
-        this.checkHn = JSON.parse(securityService.getCheckHn);
-        console.log(this.checkHn.idCard);
-        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + this.checkHn.idCard + "&token=" + this.token;
+    getDataPatientReal (hn): Observable<any> {
+        console.log(hn);
+        let url = "http://api.cpa.go.th/patient.php?request=get&cid=" + hn + "&token=" + this.token;
         return this.http.get(url).map(response => response.json())
         .catch(this.handleErrors);
     }

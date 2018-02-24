@@ -16,6 +16,8 @@ import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { ObservableArray } from "tns-core-modules/data/observable-array";
+import * as frameModule from "tns-core-modules/ui/frame";
 import {Input, ChangeDetectionStrategy} from '@angular/core';
 
 class DataItem {
@@ -23,38 +25,86 @@ class DataItem {
 }
 
 @Component({
-    selector: "profileUser",
-    templateUrl: "profileUser.component.html",
-    styleUrls: ['profileUser.component.css'],
+    selector: "bloodResult",
+    templateUrl: "bloodResult.component.html",
+    styleUrls: ['bloodResult.component.css'],
     moduleId: module.id
 })
 
 
-export class profileUserComponent implements OnInit {
+export class bloodResultComponent implements OnInit {
     public myItems: Array<DataItem>;
     private counter: number;
-
-
+    medicine = [
+        {
+            namee : "Diabetes Mellitus",
+            namet : "เบาหวาน"
+        },
+        {
+            namee : "Hypercholesterolemia",
+            namet : "ไขมัน"
+        },
+        {
+            namee : "Hypertension",
+            namet : "ความดัน"
+        }
+    ] ;
+    medicine2 = [
+        {
+            namet : "ระดับน้ำตาลในเลือด",
+            namee : "Fasting Blood Sugar"
+        },
+        {
+            namet : "ระดับน้ำตาลเฉลี่ยในเลือด",
+            namee : "HbA1C"
+        }
+    ] ;
+    medicine5 = [
+        {
+            namet : "คอเลสเตอรอลที่ดี",
+            namee : "HDL Cholesterol"
+        },
+        {
+            namet : "ไขมันไม่ดี",
+            namee : "LDL Cholesterol"
+        }
+    ] ;
+    medicine4 = [
+        {
+            namet : "ความดันโลหิต",
+            namee : "Blood pressure"
+        },
+        {
+            namet : "ชีพจร",
+            namee : "Pulse"
+        }
+    ] ;
+    medicine3 = [
+        {
+            date : "27/01/2560",
+            data : "60",
+            count : "3"
+        },
+        {
+            date : "2/12/2559",
+            data : "80",
+            count : "2"
+        },
+        {
+            date : "14/05/2559",
+            data : "110",
+            count : "1"
+        }
+    ] ;
     dataUser ;
-    cid ;
-    nameAndsurname ;
     hospitalnumber ;
-    gender ;
-    dob ;
-    blood ;
-    isLoading = true ;
-    labelHN ;
-    labelName;
-    labelLastName;
-    labelBirthday;
-    labelGender;
-    labelID;
-    labelNation;
-    labelAddress;
-    labelPhone;
-    barcode ;
     loader = new LoadingIndicator();
-
+    connect = true ;
+    connect2 = false ;
+    connect3 = false ;
+    connect4 = false ;
+    connect5 = false ;
+    count ;
     options = {
         message: 'Loading...',
         progress: 0.65,
@@ -83,32 +133,41 @@ export class profileUserComponent implements OnInit {
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
+    public onItemTap(args) {
+        console.log("------------------------ ItemTapped: " + args.index);
+        this.connect = false ;
+        if (args.index == 0) {
+            this.connect2 = true ;
+        }
+        if (args.index == 2) {
+            this.connect4 = true ;
+        }
+        if (args.index == 1) {
+            this.connect5 = true ;
+        }
+    }
+    public onItemTap2(args) {
+        console.log("------------------------ ItemTapped: " + args.index);
+        this.count = args.index ;
+        this.connect2 = false ;
+        this.connect4 = false ;
+        this.connect5 = false ;
+        this.connect3 = true ;
+        
+    }
+
     openDrawer () {
         this.sideBar.openDrawer();
     }
 
     ngOnInit(): void {
-        
-        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
-        console.log(JSON.stringify(this.dataUser.dataset));
-        console.log(this.dataUser.dataset.hn)
-        this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
         this.hospitalnumber = this.dataUser.dataset.hn
-        this.cid = this.dataUser.dataset.cid
-        this.gender = "เพศ " + this.dataUser.dataset.gender
-        this.dob = "วันเกิด " + this.dataUser.dataset.dob
-        this.barcode = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=" + this.hospitalnumber + "&code=Code39&multiplebarcodes=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" ;
- 
-
-        if (this.dataUser.dataset.blood == null) {
-            this.blood = "เลือด -"
-        }
-        else {this.blood = "เลือด " + this.dataUser.dataset.blood}
     }
 
     constructor(
         private fonticon: TNSFontIconService,
+        private _changeDetectionRef: ChangeDetectorRef,
         private modal: ModalDialogService,
         private vcRef: ViewContainerRef,
         private route: ActivatedRoute,
@@ -119,7 +178,8 @@ export class profileUserComponent implements OnInit {
                 console.log("url", s);
             });
     }
-    public toBack(){
+    toBack () {
+        console.log("connect");
         this.router.navigate(["/loginProfile"]);
     }
 

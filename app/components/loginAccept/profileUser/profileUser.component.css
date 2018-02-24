@@ -19,13 +19,18 @@
 }
 .Cloud-Light {
     font-family: "Cloud-Light" ;
-    font-weight: 800;
+    font-weight: 500;
+    font-size: 14px;
+}
+.Cloud-Light4 {
+    font-family: "Cloud-Light" ;
+    font-weight: 600;
     font-size: 14px;
 }
 .Cloud-Lights {
     font-family: "Cloud-Light" ;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 20px;
 }
 .Cloud-LightLogout {
     font-family: "Cloud-Light" ;
@@ -147,18 +152,12 @@ titleMargin {
 .fix{
     position: fixed;
 }
-.bgLabel{
-    background-color: #CCCCCC;
+.black {
+    color: black;
 }
-.bdt{
-    border-top-width: 1px;
-    border-color: lightgray;
+.w {
+    color: white;
 }
-.bdb{
-    border-bottom-width: 1px;
-    border-color: lightgray;
-}
-.img {
-    width: 50%;
-    height: 20%;
+.right {
+    text-align: right;
 }

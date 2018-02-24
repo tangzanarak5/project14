@@ -1,178 +1,61 @@
 <sidebar #sidebar></sidebar>
+<ActionBar class="bg">
+        <StackLayout>
+                <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
+                        <Label row="0" col="0" class="mdi" [text]="'mdi-arrow-back' | fonticon" (tap) = "toBack()"></Label>
+                        <label row="0" col="1" class="setCenter w Cloud-Lights" text="ประวัติส่วนตัว"></label>
+                </GridLayout>
+        </StackLayout>
+</ActionBar>
 
+<ScrollView sdkExampleTitle sdkToggleNavButton>
 <StackLayout>
-<WrapLayout class="fix" orientation="horizontal">
+        <GridLayout columns="15, 111, *, 15" rows="20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25" width="100%" height="100%">
+                <label row="1" col="0" text=""></label>
+                <label row="1" col="3" class="bdb" text=""></label>
+                <Label row="1" col="1" class = "black Cloud-Light4 bdb" text="หมายเลขผู้ป่วย"></Label>
+                <Label row="1" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.hn"></Label>
+
+                <label row="2" col="0" text=""></label>
+                <label row="3" col="3" class="bdb" text=""></label>
+                <Label row="3" col="1" class = "black Cloud-Light4 bdb" text="ชื่อ"></Label>
+                <Label row="3" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.fname"></Label>
+
+                <label row="4" col="0" text=""></label>
+                <label row="5" col="3" class="bdb" text=""></label>
+                <Label row="5" col="1" class = "black Cloud-Light4 bdb" text="นามสกุล"></Label>
+                <Label row="5" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.lname"></Label>
+
+                <label row="6" col="0" text=""></label>
+                <label row="7" col="3" class="bdb" text=""></label>
+                <Label row="7" col="1" class = "black Cloud-Light4 bdb" text="เพศ"></Label>
+                <Label row="7" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.gender"></Label>
+
+                <label row="8" col="0" text=""></label>
+                <label row="9" col="3" class="bdb" text=""></label>
+                <Label row="9" col="1" class = "black Cloud-Light4 bdb" text="วันเกิด"></Label>
+                <Label row="9" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.dob"></Label>
+
+                <label row="10" col="0" text=""></label>
+                <label row="11" col="3" class="bdb" text=""></label>
+                <Label row="11" col="1" class = "black Cloud-Light4 bdb" text="หมายเลขบัตรประชาชน"></Label>
+                <Label row="11" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.cid"></Label>
                 
+                <label row="12" col="0" text=""></label>
+                <label row="13" col="3" class="bdb" text=""></label>
+                <Label row="13" col="1" class = "black Cloud-Light4 bdb" text="สัญชาติ"></Label>
+                <Label row="13" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.nationality"></Label>
 
-        <WrapLayout orientation="horizontal" width="100%" class="bg">
-                <label height="15"></label>
-        </WrapLayout>
-
-        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
-        </WrapLayout>
-
-        <WrapLayout orientation="horizontal" width="25%" class="bg">
-                <Label class="mdi" [text]="'mdi-menu' | fonticon" (tap) = "openDrawer()"></Label>
-        </WrapLayout>
-
-        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
-        </WrapLayout>
-
-        <WrapLayout orientation="horizontal" width="70%" class="bg">
-
-                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                        <label height="7"></label>
-                </WrapLayout>
-
-                <WrapLayout orientation="horizontal" width="100%" class="bg" (tap) = "toHome()">
-                        <label class = "Cloud-Lights" text="BHUBEJHR CARE" style="color: white;"></label>   
-                </WrapLayout>
-
-        </WrapLayout>
-
-        <WrapLayout orientation="horizontal" width="100%" class="bg">
-                <label height="15"></label>
-        </WrapLayout>
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="หมายเลขผู้ป่วย"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.hn"></Label>                   
-                 </WrapLayout>
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="ชื่อ"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.fname"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="นามสกุล"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.lname"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="เพศ"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.gender"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="วันเกิด"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.dob"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="60%">
-                        <Label text="หมายเลขบัตรประชาชน"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="30%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.cid"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="70%">
-                        <Label text="สัญชาติ"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="20%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.nationality"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="10%">
-                        <Label text="ที่อยู่"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="80%">
-                        <Label class="Cloud-Light" [text]="dataUser.dataset.address"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<WrapLayout width="100%">
-                <WrapLayout width="100%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout width="5%">
-                        <Label text=" "></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="65%">
-                        <Label text="โทรศัพท์"></Label>                   
-                </WrapLayout>
-                <WrapLayout class="bdb" width="25%">
-                        <Label class="Cloud-Light textMargin" [text]="dataUser.dataset.tel"></Label>                   
-                 </WrapLayout> 
-</WrapLayout>
-
-<Label text=" "></Label>
-<Label text=" "></Label>
-<Label text=" "></Label>
-<Image class="img" [src]="barcode" ></Image>      
-          
+                <label row="14" col="0" text=""></label>
+                <label row="15" col="3" class="bdb" text=""></label>
+                <Label row="15" col="1" class = "black Cloud-Light4 bdb" text="ที่อยู่"></Label>
+                <Label row="15" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.address"></Label>
+        
+                <label row="16" col="0" text=""></label>
+                <label row="17" col="3" class="bdb" text=""></label>
+                <Label row="17" col="1" class = "black Cloud-Light4 bdb" text="โทรศัพท์"></Label>
+                <Label row="17" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.tel"></Label>
+        
+        </GridLayout>
 </StackLayout>
+</ScrollView>

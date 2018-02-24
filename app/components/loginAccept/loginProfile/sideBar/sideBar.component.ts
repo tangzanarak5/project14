@@ -18,6 +18,15 @@ import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/side
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import * as listViewModule from "tns-core-modules/ui/list-view";
+import * as observableArray from "tns-core-modules/data/observable-array";
+import * as labelModule from "tns-core-modules/ui/label";
+import {Input, ChangeDetectionStrategy} from '@angular/core';
+import {SetupItemViewArgs} from "nativescript-angular/directives";
+
+class DataItem {
+    constructor(public id: number, public name: string) { }
+}
 
 @Component({
     selector: "sidebar",
@@ -28,6 +37,47 @@ import {LoadingIndicator} from "nativescript-loading-indicator";
 
 
 export class sideBarComponent implements AfterViewInit, OnInit {
+    public myItems: Array<DataItem>;
+    private counter: number;
+    menu = [
+        {
+            name : "หน้าแรก",
+            icon : "home"
+        },
+        {
+            name : "ประวัติส่วนตัว",
+            icon : "assignment"
+        },
+        {
+            name : "ผลเลือด",
+            icon : "favorite"
+        },
+        {
+            name : "ยาและวิธีการรับประทาน",
+            icon : "local_hospital"
+        },
+        {
+            name : "ค่าใช้จ่าย",
+            icon : "attach_money"
+        },
+        {
+            name : "นัดแพทย์",
+            icon : "update"
+        },
+        {
+            name : "ข่าวสารและคำแนะนำการรักษา",
+            icon : "import_contacts"
+        },
+        {
+            name : "เว็บไซต์",
+            icon : "web"
+        },
+        {
+            name : "ออกจากระบบ",
+            icon : "exit_to_app"
+        }
+    ] ;
+
     dataUser ;
     cid ;
     nameAndsurname ;
@@ -69,6 +119,73 @@ export class sideBarComponent implements AfterViewInit, OnInit {
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
+
+    onSetupItemView(args: SetupItemViewArgs) {
+        args.view.context.odd = (args.index === 8);
+    }
+    public onItemTap(args) {
+        console.log("ItemTapped: " + args.index);
+        if (args.index == 0) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/loginProfile"]);
+            this.loader.hide();
+        }
+        if (args.index == 1) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/profileUser"]);
+            this.loader.hide();
+        }
+        if (args.index == 2) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/bloodResult"]);
+            this.loader.hide();
+        }
+        if (args.index == 3) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/medicine"]);
+            this.loader.hide();
+        }
+        if (args.index == 4) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/cost"]);
+            this.loader.hide();
+        }
+        if (args.index == 5) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/appointment"]);
+            this.loader.hide();
+        }
+        if (args.index == 6) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            utils.openUrl("https://newsbhu.firebaseapp.com/#/")
+            this.loader.hide();
+        }
+        if (args.index == 7) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            utils.openUrl("https://www.cpa.go.th//#/")
+            this.loader.hide();
+        }
+        if (args.index == 9) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.router.navigate(["/loginProfile"]);
+            this.loader.hide();
+        }
+        if (args.index == 8) {
+            this.loader.show(this.options);
+            this.drawer.closeDrawer();
+            this.logout();
+            this.loader.hide();
+        }
+    }
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
@@ -119,6 +236,30 @@ export class sideBarComponent implements AfterViewInit, OnInit {
     }
     tobeContinue () {
         alert("เมนูนี้ยังไม่เปิดให้ใช้บริการ");
+    }
+    toBlood () {
+        this.loader.show(this.options);
+        console.log("connect");
+        this.router.navigate(["/bloodResult"]);
+        this.loader.hide();
+    }
+    toCost () {
+        this.loader.show(this.options);
+        console.log("connect");
+        this.router.navigate(["/cost"]);
+        this.loader.hide();
+    }
+    toMedicine () {
+        this.loader.show(this.options);
+        console.log("connect");
+        this.router.navigate(["/medicine"]);
+        this.loader.hide();
+    }
+    toAppointment () {
+        this.loader.show(this.options);
+        console.log("connect");
+        this.router.navigate(["/appointment"]);
+        this.loader.hide();
     }
     home () {
         this.loader.show(this.options);

@@ -1,6 +1,3 @@
-.bgWhite {
-    background-color: white;
-}
 .sizePicture {
     margin-top: -325px;
     height: 25%;
@@ -14,15 +11,20 @@
 .bgWhite {
     background-color: white;
 }
+.Cloud-Light2 {
+    font-family: "Cloud-Light" ;
+    font-weight: 800;
+    font-size: 14px;
+}
 .Cloud-Light {
     font-family: "Cloud-Light" ;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 18px;
 }
 .Cloud-Lights {
     font-family: "Cloud-Light" ;
-    font-weight: 1000;
-    font-size: 18px;
+    font-weight: 800;
+    font-size: 20px;
 }
 .Cloud-LightLogout {
     font-family: "Cloud-Light" ;
@@ -36,7 +38,7 @@
     font-size: 50px;
 }
 .bg{
-    background-color: #327066;
+    background-color: #00352c;
 }
 .sizePicture2 {
     height: 80%;
@@ -110,21 +112,25 @@ titleMargin {
     color: red;
     background-color: #ffffff;
 }
-.sizeLogin {
-    background-color: rgb(225, 230, 229);
-    width: 75%;
-    font-size: 18px;
-}
-.img {
-    width: 50%;
-    height: 20%;
-}
 .mdi {
     font-family: "Material Icons", "MaterialIcons-Regular";
     font-size: 36px;
-    color: lightgray;
+    color: white;
   }
-  .bdt{
+  .opa {
+      opacity: 0.2;
+      height: 55%;
+      width: 55% ;
+  }
+.bdr{
+    border-right-width: 1px;
+    border-color: lightgray;
+}
+.bdl{
+    border-left-width: 1px;
+    border-color: lightgray;
+}
+.bdt{
     border-top-width: 1px;
     border-color: lightgray;
 }
@@ -132,9 +138,51 @@ titleMargin {
     border-bottom-width: 1px;
     border-color: lightgray;
 }
-.textMargin {
-    margin-top: 25px;
+.imgSize {
+    width:50% ;
+    height:10% ;
+    margin-left: 25%;
 }
-.odd {
-    color: red;
+.fix{
+    position: fixed;
+}
+.center {
+    text-align: center;
+}
+.black {
+    color: black;
+}
+.mleft0 {
+    margin-left: 2.5%;
+ }
+.mleft1 {
+   margin-left: 10%;
+}
+.mleft2 {
+    margin-left: 6.5%;
+ }
+ .mtop {
+    margin-top: 15%;
+ }
+ .mbottom {
+    margin-bottom: 15%;
+ }
+.bdrc{
+    border-right-width: 1px;
+    border-color: green;
+}
+.bdlc{
+    border-left-width: 1px;
+    border-color: green;
+}
+.bdtc{
+    border-top-width: 1px;
+    border-color: green;
+}
+.bdbc{
+    border-bottom-width: 1px;
+    border-color: green;
+}
+.w {
+    color: white;
 }

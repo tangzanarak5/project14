@@ -12,7 +12,11 @@ import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/a
 import { sideBarComponent } from "../loginAccept/loginProfile/sideBar/sideBar.component";
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 import { profileUserComponent } from "../loginAccept/profileUser/profileUser.component";
-
+import { bloodResultComponent } from "../loginAccept/bloodResult/bloodResult.component";
+import { costComponent } from "../loginAccept/cost/cost.component";
+import { medicineComponent } from "../loginAccept/medicine/medicine.component";
+import { appointmentComponent } from "../loginAccept/appointment/appointment.component";
+import { barCodeComponent } from "../loginAccept/loginProfile/barCode.component";
 @NgModule({
 
     imports: [
@@ -28,7 +32,12 @@ import { profileUserComponent } from "../loginAccept/profileUser/profileUser.com
         loginProfileComponent,
         loginAcceptComponent,
         sideBarComponent,
-        profileUserComponent
+        profileUserComponent,
+        bloodResultComponent,
+        costComponent,
+        medicineComponent,
+        appointmentComponent,
+        barCodeComponent
     ],
     providers: [
         ModalDialogService,

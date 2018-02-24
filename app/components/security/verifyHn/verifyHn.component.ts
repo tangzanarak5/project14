@@ -74,14 +74,14 @@ export class VerifyHnComponent implements OnInit {
         console.log(this.checkHn.idCard);
     }
    
-    getHospitalNumber () {
+    getHospitalNumber (hn) {
 
         let nts = this ;
         
-        this.verifyHnService.getDataPatient()
+        this.verifyHnService.getDataPatient(hn)
         .subscribe(
             (Response) => {
-                if (Response.dataset.cid == nts.checkHn.idCard) {
+                if (Response.dataset.cid == hn) {
                     if(Response.dataset.status == "approved"){
                     this.loader.hide();
                     console.log('yes');
@@ -100,16 +100,25 @@ export class VerifyHnComponent implements OnInit {
                         console.log('no'); action(noData)}
                 }
                 else {
-                    this.verifyHnService.getDataPatientReal()
+                    this.verifyHnService.getDataPatientReal(hn)
                     .subscribe(
                         (Response) => {
-                            if (Response.dataset.cid == nts.checkHn.idCard) {
+                            if (Response.dataset.cid == hn) {
                                 
                                 this.loader.hide();
                                 console.log('yes');
                                 this.hospitalNumberActionDialog(Response.dataset.hn.toString());
                                 this.checkHn.idCard = "";
                                 securityService.setUserData = JSON.stringify(this.checkHn);
+                            }
+                            else {
+                                let noData = {
+                                    title: "ยืนยันลงทะเบียน",
+                                    cancelButtonText: "ตกลง",
+                                    actions: ["ไม่สำเร็จ รอการยืนยันจากเจ้าหน้าที่"]
+                                };
+                                this.loader.hide();
+                                    console.log('no'); action(noData)
                             }
                         },
                         (error) => {
@@ -143,8 +152,11 @@ export class VerifyHnComponent implements OnInit {
         };
         action(options)
     }
+
     checkIdCard () {
         this.loader.show(this.options);
+
+        console.log(this.checkHn.idCard);
         
         let test = this.checkHn.idCard.length
         
@@ -178,7 +190,8 @@ export class VerifyHnComponent implements OnInit {
            if(SumDigit == this.res[12]){
                 console.log("หมายเลขบัตรประชาชนถูกต้อง");
                 securityService.setUserData = JSON.stringify(this.checkHn);
-                this.getHospitalNumber();
+                //console.log(JSON.stringify(this.checkHn.idCard))
+                this.getHospitalNumber(this.checkHn.idCard);
                 
            }
            else{
@@ -191,7 +204,7 @@ export class VerifyHnComponent implements OnInit {
             if(CheckDigit == this.res[12]){
                 console.log("หมายเลขบัตรประชาชนถูกต้อง");
                 securityService.setCheckHn = JSON.stringify(this.checkHn);
-                this.getHospitalNumber();
+                this.getHospitalNumber(this.checkHn.idCard);
            }
            else{
                 console.log("หมายเลขบัตรประชาชนไม่ถูกต้อง");

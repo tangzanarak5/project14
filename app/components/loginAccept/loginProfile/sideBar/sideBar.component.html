@@ -1,170 +1,32 @@
 
         <RadSideDrawer tkExampleTitle tkToggleNavButton showOverNavigation="true" drawerContentSize="320">
-            <StackLayout tkDrawerContent class="sideStackLayout bgWhite">
-                <StackLayout orientation="vertical" horizontalAlignment="left">
-                        <WrapLayout orientation="horizontal">
-                        <WrapLayout orientation="horizontal" width="95%" class="bg">
-                                <label height="20"></label>
-                        </WrapLayout>
-
-                        <WrapLayout orientation="horizontal" width="5%" class="bg">
-                                        <label height="20"></label>
-                        </WrapLayout>
-                
-                        <WrapLayout orientation="horizontal" width="2.5%" class="bg">
-                        </WrapLayout>
-                
-                        <WrapLayout orientation="horizontal" width="20%" class="bg" (tap) = "home()">
-                                <Image src="~/images/logo app.png" ></Image>
-                        </WrapLayout>
-                
-                        <WrapLayout orientation="horizontal" width="4%" class="bg">
-                                 
-                        </WrapLayout>
+                       
+                <StackLayout tkDrawerContent class="sideStackLayout bgWhite">
                                 
-                        <WrapLayout orientation="horizontal" width="73.6%" class="bg">
-                                        
-                                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                                        <label height="2"></label>
-                                </WrapLayout>
-                
-                                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                                        <label class = "Cloud-Light" [text]="hospitalnumber" style="color: white;"></label>
-                                </WrapLayout>
-                
-                                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                                        <label class = "Cloud-Light" [text]="nameAndsurname" style="color: white;"></label>  
-                                </WrapLayout>
-                
-                                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                                        <label class = "Cloud-Light" [text]="cid" style="color: white;"></label>
-                                </WrapLayout>
-                                <WrapLayout orientation="horizontal" width="100%" class="bg">
-                                                <label height="22"></label>
-                                        </WrapLayout>
-                        </WrapLayout>
-                        </WrapLayout>
+                <StackLayout class="bg" height="380px">
+                        <GridLayout columns="100, *" rows="25, 25, 25, 25" width="100%">
+                        <label row="0" col="1" class = "Cloud-Light" text="" style="color: white;"></label>
+                        <Image row="1" col="0" rowSpan="4" src="~/images/logo app.png" ></Image>
+                        <label row="1" col="1" class = "Cloud-Light" [text]="hospitalnumber" style="color: white;"></label>
+                        <label row="2" col="1" class = "Cloud-Light" [text]="nameAndsurname" style="color: white;"></label>
+                        <label row="3" col="1" class = "Cloud-Light" [text]="cid" style="color: white;"></label>
+                        </GridLayout>
+                                
                 </StackLayout>
-                <StackLayout class="sideStackLayout">
-                        <Image class="img" [src]="barcode" ></Image>
-                        <WrapLayout width="100%" (tap) = "home()">
-                                <WrapLayout width="5%">
-                                        <Label text=" "></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="bdt" width="20%">
-                                        <Label class="mdi" [text]="'mdi-home' | fonticon"></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="bdt" width="70%">
-                                        <Label class="Cloud-Light textMargin" text="หน้าแรก"></Label>                   
-                                 </WrapLayout> 
-                        </WrapLayout>
-                        <WrapLayout width="100%" (tap) = "toProfileUser()">
-                                <WrapLayout width="5%">
-                                        <Label text=" "></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="bdt" width="20%">
-                                        <Label class="mdi" [text]="'mdi-assignment-ind' | fonticon"></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="bdt" width="70%">
-                                        <Label class="Cloud-Light textMargin" text="ประวัติส่วนตัว"></Label>                   
-                                </WrapLayout> 
-                        </WrapLayout>
-                        <WrapLayout width="100%" (tap) = "tobeContinue()">
-                                        <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                <Label class="mdi" [text]="'mdi-favorite' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="ผลเลือด"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-
-                        <WrapLayout width="100%" (tap) = "tobeContinue()">
-                                        <WrapLayout width="5%">
-                                                 <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                 <Label class="mdi" [text]="'mdi-favorite-border' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="ความดัน"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-
-                        <WrapLayout width="100%" (tap) = "tobeContinue()">
-                                        <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                 <Label class="mdi" [text]="'mdi-local-hospital' | fonticon"></Label>                   
-                                         </WrapLayout>
-                                         <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="ยาและวิธีการรับประทาน"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-                                               
-                        <WrapLayout width="100%" (tap) = "tobeContinue()">
-                                        <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                <Label class="mdi" [text]="'mdi-monetization-on' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="ค่าใช้จ่าย"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-                                                        
-                        <WrapLayout width="100%" (tap) = "tobeContinue()">
-                                        <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                <Label class="mdi" [text]="'mdi-access-time' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="นัดแพทย์"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-                                                                
-                        <WrapLayout width="100%" (tap) = "news()">
-                                         <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="20%">
-                                                <Label class="mdi" [text]="'mdi-import-contacts' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="ข่าวสารและคำแนะนำการรักษา"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-                                                                       
-                        <WrapLayout width="100%" (tap) = "web()">
-                                        <WrapLayout width="5%">
-                                                <Label text=" "></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt bdb" width="20%">
-                                                <Label class="mdi" [text]="'mdi-web' | fonticon"></Label>                   
-                                        </WrapLayout>
-                                        <WrapLayout class="bdt bdb" width="70%">
-                                                <Label class="Cloud-Light textMargin" text="เว็บไซต์"></Label>                   
-                                        </WrapLayout> 
-                                </WrapLayout>
-                        <Label text=" "></Label>              
-                        <WrapLayout width="100%" (tap) = "logout()">
-                                <WrapLayout width="5%">
-                                        <Label text=" "></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="" width="20%">
-                                        <Label class="mdi" [text]="'mdi-exit-to-app' | fonticon"></Label>                   
-                                </WrapLayout>
-                                <WrapLayout class="" width="70%">
-                                        <Label class="Cloud-Light textMargin" style="color: red;" text="ออกจากระบบ"></Label>                   
-                                </WrapLayout> 
-                        </WrapLayout>
+                <StackLayout>
+                <ListView [items]="menu" (setupItemView)="onSetupItemView($event)" (itemTap)="onItemTap($event)">
+                        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                                <StackLayout class="mtop" [class.odd]="odd" [class.even]="even">
+                                <GridLayout class = "bdr" columns="5, 70, *" rows="32, 10" width="100%" height="100%">
+                                <Label row="0" col="0" class="mdi" text=""></Label>
+                                <Label row="0" col="1" class="mdi" [text]="item.icon + 'fonticon'"></Label>
+                                <Label row="0" col="2" class = "Cloud-Light textMargin" [text]='item.name'></Label>
+                                </GridLayout>              
+                                </StackLayout>
+                        </ng-template>
+                </ListView>
                 </StackLayout>
-               
+        
             </StackLayout>
+        
         </RadSideDrawer> 

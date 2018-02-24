@@ -6,7 +6,7 @@ import { ViewContainerRef } from "@angular/core";
 import { securityService } from "../../security/security.service";
 import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
-import { loginProfileService } from "./loginProfile.service";
+import { loginProfileService } from "../loginProfile/loginProfile.service";
 import * as wrapLayoutModule from "tns-core-modules/ui/layouts/wrap-layout";
 import * as dialogs from "ui/dialogs";
 import { ActivityIndicator } from "ui/activity-indicator";
@@ -16,28 +16,44 @@ import { Observable } from "data/observable";
 import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
-import { barCodeComponent } from "../loginProfile/barCode.component";
-import * as datePickerModule from "tns-core-modules/ui/date-picker";
+import {Input, ChangeDetectionStrategy} from '@angular/core';
+
+class DataItem {
+    constructor(public id: number, public name: string) { }
+}
+
 @Component({
-    selector: "loginProfile",
-    templateUrl: "loginProfile.component.html",
-    styleUrls: ['loginProfile.component.css'],
+    selector: "cost",
+    templateUrl: "cost.component.html",
+    styleUrls: ['cost.component.css'],
     moduleId: module.id
 })
 
 
-export class loginProfileComponent implements OnInit {
-
+export class costComponent implements OnInit {
+    public myItems: Array<DataItem>;
+    private counter: number;
     dataUser ;
-    cid ;
-    nameAndsurname ;
     hospitalnumber ;
-    gender ;
-    dob ;
-    blood ;
+    medicineNumber ;
     loader = new LoadingIndicator();
+    connect = true ;
+    medicine = [
+        {
+            date : "27/01/2560",
+            type : "ความดันโลหิต"
+        },
+        {
+            date : "2/12/2559",
+            type : "ไขมัน"
+        },
+        {
+            date : "14/5/2559",
+            type : "เบาหวาน"
+        },
+    ] ;
 
-     options = {
+    options = {
         message: 'Loading...',
         progress: 0.65,
         android: {
@@ -65,103 +81,41 @@ export class loginProfileComponent implements OnInit {
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
+    public onItemTap(args) {
+        console.log("------------------------ ItemTapped: " + args.index);
+        this.medicineNumber = args.index ;
+        this.connect = false
+    }
+
     openDrawer () {
         this.sideBar.openDrawer();
     }
 
     ngOnInit(): void {
-        
-        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
-        console.log(JSON.stringify(this.dataUser.dataset));
-        console.log(this.dataUser.dataset.hn)
-        this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
         this.hospitalnumber = this.dataUser.dataset.hn
-        this.cid = this.dataUser.dataset.cid
-        this.gender = "เพศ " + this.dataUser.dataset.gender
-        this.dob = "วันเกิด " + this.dataUser.dataset.dob
-        if (this.dataUser.dataset.blood == null) {
-            this.blood = "เลือด -"
-        }
-        else {this.blood = "เลือด " + this.dataUser.dataset.blood}
     }
 
     constructor(
         private fonticon: TNSFontIconService,
+        private _changeDetectionRef: ChangeDetectorRef,
         private modal: ModalDialogService,
         private vcRef: ViewContainerRef,
         private route: ActivatedRoute,
         private router: Router,
         private loginProfileService: loginProfileService,
         page: Page) {
-            
             route.url.subscribe((s:UrlSegment[]) => {
                 console.log("url", s);
             });
     }
-
-    toAppointment () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/appointment"]);
-        this.loader.hide();
-    }
-
-    toBlood () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/bloodResult"]);
-        this.loader.hide();
-    }
-
-    toCost () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/cost"]);
-        this.loader.hide();
-    }
-
-    toMedicine () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/medicine"]);
-        this.loader.hide();
-    }
-
-    toProfileUser () {
-        this.loader.show(this.options);
-        console.log("connect");
-        this.router.navigate(["/profileUser"]);
-        this.loader.hide();
-    }
-
-    toHome () {
-        this.loader.show(this.options);
+    toBack () {
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
-        this.loader.hide();
     }
 
-    news () {
-        this.loader.show(this.options);
-        utils.openUrl("https://newsbhu.firebaseapp.com/#/");
-        this.loader.hide();
+    getCost () {
+        this.connect = false ;
     }
-    web () {
-        this.loader.show(this.options);
-        utils.openUrl("https://www.cpa.go.th//#/");
-        this.loader.hide();
-    }
-    public showBarcode() {
-        console.log("barcode");
-        let options = {
-            context: {},
-            fullscreen: false,
-            viewContainerRef: this.vcRef
-        };
-        this.modal.showModal(barCodeComponent, options).then(res => {
- 
-            
-        });
-    }
+
  }
