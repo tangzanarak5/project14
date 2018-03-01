@@ -11,6 +11,7 @@ import { formDateComponent } from "../formProfileRecord/formDate.component";
 import { securityService } from "../security.service";
 import * as activityIndicatorModule from "tns-core-modules/ui/activity-indicator";
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "formProfileRecord",
@@ -62,8 +63,9 @@ export class formProfileRecordComponent implements OnInit {
         private vcRef: ViewContainerRef,
         private route: ActivatedRoute,
         private router: Router,
-        page: Page
-    ) { page.actionBarHidden = true;}
+        page: Page,
+        private fonticon: TNSFontIconService
+    ) {}
 
 ngOnInit(): void {
     this.user = new user();

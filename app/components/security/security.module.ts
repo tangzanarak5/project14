@@ -24,12 +24,16 @@ import { AuthGuard } from "../security/auth-guard.service";
 import { newPatientComponent } from "./newPatient/newPatient.component";
 import { registerSuccessComponent } from "../security/registerSuccess/registerSuccess.component";
 import {AndroidApplication} from "application";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 
 @NgModule({
     imports: [
         NativeScriptModule,
         SecurityRouting,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'
+          })
     ],
     declarations: [
         SecurityComponent,

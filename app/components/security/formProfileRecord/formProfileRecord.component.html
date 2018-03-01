@@ -1,4 +1,11 @@
-<Page>
+<ActionBar>
+        <StackLayout>
+                <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
+                        <Label row="0" col="0" class="mdi" [text]="'mdi-arrow-back' | fonticon" [nsRouterLink]="['../verifyidcard']"></Label>
+                        <label row="0" col="1" class="setCenter b Cloud-Lights" text="ประวัติส่วนตัว"></label>
+                </GridLayout>
+        </StackLayout>
+</ActionBar>
     <ScrollView sdkExampleTitle sdkToggleNavButton>
             <StackLayout class="StackBgColor">
   <StackLayout class="Cloud-Light">
@@ -47,6 +54,5 @@
         </StackLayout>
     </StackLayout>
     </ScrollView>
-    </Page>
 
 

@@ -71,7 +71,7 @@ export class loginProfileComponent implements OnInit {
 
     ngOnInit(): void {
         
-        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
+        // if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
         console.log(this.dataUser.dataset.hn)
@@ -80,10 +80,10 @@ export class loginProfileComponent implements OnInit {
         this.cid = this.dataUser.dataset.cid
         this.gender = "เพศ " + this.dataUser.dataset.gender
         this.dob = "วันเกิด " + this.dataUser.dataset.dob
-        if (this.dataUser.dataset.blood == null) {
-            this.blood = "เลือด -"
-        }
-        else {this.blood = "เลือด " + this.dataUser.dataset.blood}
+        // if (this.dataUser.dataset.blood == null) {
+        //     this.blood = "เลือด -"
+        // }
+        // else {this.blood = "เลือด " + this.dataUser.dataset.blood}
     }
 
     constructor(
@@ -104,53 +104,53 @@ export class loginProfileComponent implements OnInit {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/appointment"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     toBlood () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/bloodResult"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     toCost () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/cost"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     toMedicine () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/medicine"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     toProfileUser () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/profileUser"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     toHome () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
-        this.loader.hide();
+        this.demoLoader();
     }
 
     news () {
         this.loader.show(this.options);
         utils.openUrl("https://newsbhu.firebaseapp.com/#/");
-        this.loader.hide();
+        this.demoLoader();
     }
     web () {
         this.loader.show(this.options);
         utils.openUrl("https://www.cpa.go.th//#/");
-        this.loader.hide();
+        this.demoLoader();
     }
     public showBarcode() {
         console.log("barcode");
@@ -164,4 +164,9 @@ export class loginProfileComponent implements OnInit {
             
         });
     }
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 1000);
+      }
  }

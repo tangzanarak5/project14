@@ -9,6 +9,7 @@ import { user } from "../model/user.model"
 import { securityService } from "../security.service";
 import { ActivityIndicator } from "ui/activity-indicator";
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "verifyidcard",
@@ -122,9 +123,9 @@ export class verifyidcardComponent implements OnInit {
     page: Page,
     private router: Router,
     private route: ActivatedRoute,
-    private verifyidcardService: verifyidcardService
+    private verifyidcardService: verifyidcardService,
+    private fonticon: TNSFontIconService
 ) {
-    page.actionBarHidden = true;
     route.url.subscribe((s:UrlSegment[]) => {
         console.log("url", s);
     });

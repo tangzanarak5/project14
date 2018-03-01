@@ -241,50 +241,50 @@ export class sideBarComponent implements AfterViewInit, OnInit {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/bloodResult"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     toCost () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/cost"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     toMedicine () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/medicine"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     toAppointment () {
         this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/appointment"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     home () {
         this.loader.show(this.options);
         this.drawer.closeDrawer();
         this.router.navigate(["/loginProfile"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     toProfileUser () {
         this.loader.show(this.options);
         this.drawer.closeDrawer();
         console.log("connect");
         this.router.navigate(["/profileUser"]);
-        this.loader.hide();
+        this.demoLoader();
     }
     news () {
         this.loader.show(this.options);
         this.drawer.closeDrawer();
         utils.openUrl("https://newsbhu.firebaseapp.com/#/")
-        this.loader.hide();
+        this.demoLoader();
         }
     web () { 
         this.loader.show(this.options);
         this.drawer.closeDrawer();
         utils.openUrl("https://www.cpa.go.th//#/")
-        this.loader.hide();
+        this.demoLoader();
          }
     logout () {
         dialogs.confirm({
@@ -301,9 +301,14 @@ export class sideBarComponent implements AfterViewInit, OnInit {
                 this.loader.show(this.options);
                 this.drawer.closeDrawer();
                 this.router.navigate(["/security/standbytologin"]);
-                this.loader.hide();
+                this.demoLoader();
             }
         });  
     }
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 1000);
+      }
 
  }

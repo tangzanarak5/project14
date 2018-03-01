@@ -1,4 +1,3 @@
-<sidebar #sidebar></sidebar>
 <ActionBar class="bg">
         <StackLayout>
                 <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
@@ -8,8 +7,8 @@
         </StackLayout>
 </ActionBar>
 
-<StackLayout *ngIf = "connect">
-<ListView [items]="medicine" (itemTap)="onItemTap($event)">
+<StackLayout>
+<ListView [items]="disease" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                 <StackLayout class="mtop" [class.odd]="odd" [class.even]="even">
                         <GridLayout columns="20, 200, *" rows="15, 25, 25, 30" width="100%" height="100%">
@@ -24,7 +23,7 @@
 </ListView>                               
 </StackLayout>
 
-<ScrollView sdkExampleTitle sdkToggleNavButton>
+<!-- <ScrollView sdkExampleTitle sdkToggleNavButton>
 <StackLayout *ngIf = "!connect">
         <GridLayout columns="15, 111, *, 15" rows="20, 25, 40, 25, 20 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25" width="100%" height="100%">
                 <label row="1" col="1" colSpan="3" class = "Cloud-Light4 black" [text]='"ยอดชำระ " + "โรค" + medicine[medicineNumber].type'></label>
@@ -81,4 +80,4 @@
                 <Label row="21" col="2" class="Cloud-Light right bdb" text="11,100"></Label>
         </GridLayout>
 </StackLayout>
-</ScrollView>
+</ScrollView> -->

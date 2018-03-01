@@ -19,6 +19,9 @@ import {LoadingIndicator} from "nativescript-loading-indicator";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import * as frameModule from "tns-core-modules/ui/frame";
 import {Input, ChangeDetectionStrategy} from '@angular/core';
+import { selectBlood } from "../../security/model/selectBlood.model"
+import { loginProfileComponent } from "../loginProfile/loginProfile.component";
+import { RouterExtensions } from "nativescript-angular";
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -33,9 +36,12 @@ class DataItem {
 
 
 export class bloodResultComponent implements OnInit {
+    selectBlood: selectBlood ;
     public myItems: Array<DataItem>;
     private counter: number;
-    medicine = [
+    bloodResult ;
+
+    disease = [
         {
             namee : "Diabetes Mellitus",
             namet : "เบาหวาน"
@@ -49,61 +55,10 @@ export class bloodResultComponent implements OnInit {
             namet : "ความดัน"
         }
     ] ;
-    medicine2 = [
-        {
-            namet : "ระดับน้ำตาลในเลือด",
-            namee : "Fasting Blood Sugar"
-        },
-        {
-            namet : "ระดับน้ำตาลเฉลี่ยในเลือด",
-            namee : "HbA1C"
-        }
-    ] ;
-    medicine5 = [
-        {
-            namet : "คอเลสเตอรอลที่ดี",
-            namee : "HDL Cholesterol"
-        },
-        {
-            namet : "ไขมันไม่ดี",
-            namee : "LDL Cholesterol"
-        }
-    ] ;
-    medicine4 = [
-        {
-            namet : "ความดันโลหิต",
-            namee : "Blood pressure"
-        },
-        {
-            namet : "ชีพจร",
-            namee : "Pulse"
-        }
-    ] ;
-    medicine3 = [
-        {
-            date : "27/01/2560",
-            data : "60",
-            count : "3"
-        },
-        {
-            date : "2/12/2559",
-            data : "80",
-            count : "2"
-        },
-        {
-            date : "14/05/2559",
-            data : "110",
-            count : "1"
-        }
-    ] ;
+
     dataUser ;
     hospitalnumber ;
     loader = new LoadingIndicator();
-    connect = true ;
-    connect2 = false ;
-    connect3 = false ;
-    connect4 = false ;
-    connect5 = false ;
     count ;
     options = {
         message: 'Loading...',
@@ -135,34 +90,24 @@ export class bloodResultComponent implements OnInit {
 
     public onItemTap(args) {
         console.log("------------------------ ItemTapped: " + args.index);
-        this.connect = false ;
-        if (args.index == 0) {
-            this.connect2 = true ;
-        }
-        if (args.index == 2) {
-            this.connect4 = true ;
-        }
-        if (args.index == 1) {
-            this.connect5 = true ;
-        }
-    }
-    public onItemTap2(args) {
-        console.log("------------------------ ItemTapped: " + args.index);
-        this.count = args.index ;
-        this.connect2 = false ;
-        this.connect4 = false ;
-        this.connect5 = false ;
-        this.connect3 = true ;
-        
-    }
-
-    openDrawer () {
-        this.sideBar.openDrawer();
+        this.selectBlood.numberIndex = args.index ;
+        this.selectBlood.name = this.disease[args.index].namee + " ( " + this.disease[args.index].namet + " )" ;
+        securityService.setSelectBlood = JSON.stringify(this.selectBlood);
+        // this.selectBlood = JSON.parse(securityService.getSelectBlood);
+        console.log(securityService.getSelectBlood);
+        this.router.navigate(["/bloodResultSelect"]);
     }
 
     ngOnInit(): void {
-        this.dataUser = JSON.parse(securityService.getDataUser);
-        this.hospitalnumber = this.dataUser.dataset.hn
+        
+        this.selectBlood = new selectBlood ;
+        this.selectBlood.numberIndex = "" ;
+        this.selectBlood.name = "" ;
+        securityService.setSelectBlood = JSON.stringify(this.selectBlood);
+        console.log(securityService.getSelectBlood);
+        // this.selectBlood = JSON.parse(securityService.getSelectBlood);
+        // this.dataUser = JSON.parse(securityService.getDataUser);
+        // this.hospitalnumber = this.dataUser.dataset.hn
     }
 
     constructor(
@@ -173,14 +118,38 @@ export class bloodResultComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private loginProfileService: loginProfileService,
+        private routerExtensions: RouterExtensions,
         page: Page) {
             route.url.subscribe((s:UrlSegment[]) => {
                 console.log("url", s);
             });
     }
     toBack () {
+        this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
+        this.demoLoader();
     }
-
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 1000);
+      }
+    // checkUpDown(i, d, count) {
+    // //     if (i == 0) {
+    // //         if (d < this.medicine3[i+1].dataResult) {
+    // //             return true ;
+    // //         }
+    // //         else return false ;
+    // //     }
+    // //     if (count != 1 && i > 0) {
+    // //     if (i > 0) {
+    // //         if (d < this.medicine3[i+1].dataResult) {
+    // //             return true ;
+    // //         }
+    // //         else return false ;
+    // //     }
+    // // }
+    // // else return true ;
+    // // }
  }

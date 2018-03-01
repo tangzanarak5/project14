@@ -1,3 +1,11 @@
+<ActionBar>
+        <StackLayout>
+                <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
+                        <Label row="0" col="0" class="mdi" [text]="'mdi-arrow-back' | fonticon" [nsRouterLink]="['../standbytologin']"></Label>
+                        <label row="0" col="1" class="setCenter b Cloud-Lights" text="ตรวจสอบการลงทะเบียน"></label>
+                </GridLayout>
+        </StackLayout>
+</ActionBar>
 <StackLayout class="Cloud-Light">
     <Label text = "ลงทะเบียนภูเบศรแคร์" class="labelTitle sizeFontTitle fontBlack"></Label>
     <TextField  keyboardType = "number" [(ngModel)]="checkRegister.idCard" hint="หมายเลขบัตรประชาชน" class="sizeInput sizeFont" maxLength="13"></TextField>

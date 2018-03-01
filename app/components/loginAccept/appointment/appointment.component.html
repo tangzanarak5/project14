@@ -1,4 +1,3 @@
-<sidebar #sidebar></sidebar>
 <ActionBar class="bg">
         <StackLayout>
                 <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
@@ -10,10 +9,10 @@
 
 <ScrollView sdkExampleTitle sdkToggleNavButton>
 <StackLayout *ngIf = "appoint1">
-        <GridLayout columns="15, 111, *, 15" rows="20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25" width="100%" height="80%">
+        <GridLayout columns="15, 60, *, 15" rows="20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25" width="100%" height="80%">
                 <label row="1" col="0" text=""></label>
                 <label row="1" col="3" class="bdb" text=""></label>
-                <Label row="1" col="1" class = "black Cloud-Light4 bdb" text="หมายเลขผู้ป่วย"></Label>
+                <Label row="1" col="1" class = "black Cloud-Light4 bdb" text="หมาย HN"></Label>
                 <Label row="1" col="2" class="Cloud-Light right bdb" [text]="dataUser.dataset.hn"></Label>
 
                 <label row="2" col="0" text=""></label>
@@ -34,7 +33,7 @@
                 <label row="8" col="0" text=""></label>
                 <label row="9" col="3" class="bdb" text=""></label>
                 <Label row="9" col="1" class = "black Cloud-Light4 bdb" text="สถานที่"></Label>
-                <Label row="9" col="2" class="Cloud-Light right bdb" text="โรงพยาบาล ชั้น 2"></Label>
+                <Label row="9" col="2" class="Cloud-Light right bdb" text="โรงพยาบาลอภัยภูเบศร ชั้น 2"></Label>
 
                 <label row="10" col="0" text=""></label>
                 <label row="11" col="3" class="bdb" text=""></label>
@@ -44,7 +43,7 @@
                 <label row="12" col="0" text=""></label>
                 <label row="13" col="3" class="bdb" text=""></label>
                 <Label row="13" col="1" class = "black Cloud-Light4 bdb" text="วัน-เวลา"></Label>
-                <Label row="13" col="2" class="Cloud-Light right bdb" text="พ. 14 ก.พ. 10.30 น."></Label>
+                <Label row="13" col="2" class="Cloud-Light right bdb" [text]="dayapp"></Label>
 
                 <label row="14" col="0" text=""></label>
                 <label row="15" col="3" class="bdb" text=""></label>

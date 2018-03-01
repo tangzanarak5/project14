@@ -6,6 +6,7 @@ import { ViewContainerRef } from "@angular/core";
 import { securityService } from "../security.service";
 import { connectionType, getConnectionType } from "connectivity";
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "newPatient",
@@ -16,16 +17,7 @@ import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 
 export class newPatientComponent implements OnInit {
 
- 
-
-    ngOnInit(): void {
-
-    }
-
-    constructor(
-        page: Page
-  ) {
-    page.actionBarHidden = true; 
-    }
+    ngOnInit(): void {}
+    constructor(page: Page, private fonticon: TNSFontIconService) {}
 
  }

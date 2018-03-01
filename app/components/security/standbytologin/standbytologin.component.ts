@@ -142,6 +142,12 @@ export class StandByToLoginComponent implements OnInit {
 
     }
 
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 3000);
+      }
+
     checkLogin () { 
             
             var tns = this;
@@ -171,7 +177,7 @@ export class StandByToLoginComponent implements OnInit {
                           tns.datasUser = JSON.parse(securityService.getDataUser);
                           console.log(JSON.stringify(tns.dataUser));
                           tns.router.navigate(["/loginAccept"]);
-                          this.loader.hide();
+                          this.demoLoader();
                         },
                         (error) => {
                             securityService.setIsLogin = "false";

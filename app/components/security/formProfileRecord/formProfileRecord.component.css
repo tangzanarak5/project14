@@ -78,3 +78,19 @@
 .bottomSick {
     margin-bottom: 40px;
 }
+.mdi {
+    font-family: "Material Icons", "MaterialIcons-Regular";
+    font-size: 36px;
+    color: black;
+  }
+.setCenter {
+    text-align: center ;
+}
+.b {
+    color: black;
+}
+.Cloud-Lights {
+    font-family: "Cloud-Light" ;
+    font-weight: 800;
+    font-size: 20px;
+}

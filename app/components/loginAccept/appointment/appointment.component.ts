@@ -47,6 +47,7 @@ export class appointmentComponent implements OnInit {
    
     public myItems: Array<DataItem>;
     private counter: number;
+    dayapp = "พุธ 14 กุมภาพันธ์ 2561 เวลา 10.30 น." ;
     medicine = [
         {
             namee : "พฤหัสบดี 15 กุมภาพันธ์ 2561",
@@ -89,13 +90,8 @@ export class appointmentComponent implements OnInit {
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
-    openDrawer () {
-        this.sideBar.openDrawer();
-    }
-
     ngOnInit(): void {
         
-        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
         console.log(this.dataUser.dataset.hn)
@@ -123,9 +119,17 @@ export class appointmentComponent implements OnInit {
     }
 
     toBack () {
+        this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
+        this.demoLoader();
     }
+
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 1000);
+      }
 
     change () {
         this.appoint1 = false;
@@ -133,8 +137,8 @@ export class appointmentComponent implements OnInit {
     }
 
     public onItemTap2(args) {
-        console.log("------------------------ ItemTapped: " + args.index); 
         this.loader.show(this.options);
+        console.log("------------------------ ItemTapped: " + args.index); 
         dialogs.confirm({
             title: "เลื่อนนัดแพทย์",
             message: "",
@@ -142,11 +146,11 @@ export class appointmentComponent implements OnInit {
             okButtonText: "ยกเลิก"
         }).then(result => {
             // result argument is boolean
-            console.log("Dialog result: " + result);
+            this.dayapp = this.medicine[args.index].namee + " " + this.medicine[args.index].namet
             this.loader.hide();
-
+            console.log("Dialog result: " + result);
+            this.loader.show(this.options);
             if(result == false){
-                this.loader.show(this.options);
                 dialogs.confirm({
                     title: "เลื่อนนัดแพทย์",
                     message: "การเลื่อนนัดแพทย์สำเร็จ",
@@ -154,8 +158,10 @@ export class appointmentComponent implements OnInit {
                 }).then(result => {
                     // result argument is boolean
                     console.log("Dialog result: " + result);
-                    this.loader.hide();
-                    this.router.navigate(["/loginProfile"]);
+                    // this.router.navigate(["/loginProfile"]);
+                    this.appoint2 = false ;
+                    this.appoint1 = true ;
+                    this.demoLoader();
                 });  
             }
 

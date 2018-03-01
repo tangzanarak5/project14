@@ -17,6 +17,7 @@ import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
 import {Input, ChangeDetectionStrategy} from '@angular/core';
+import { costSelect } from "../../security/model/costSelect.model"
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -33,12 +34,13 @@ class DataItem {
 export class costComponent implements OnInit {
     public myItems: Array<DataItem>;
     private counter: number;
+    costSelect: costSelect ;
     dataUser ;
     hospitalnumber ;
     medicineNumber ;
     loader = new LoadingIndicator();
     connect = true ;
-    medicine = [
+    disease = [
         {
             date : "27/01/2560",
             type : "ความดันโลหิต"
@@ -82,16 +84,22 @@ export class costComponent implements OnInit {
     @ViewChild('sidebar') sideBar: sideBarComponent
 
     public onItemTap(args) {
+        this.loader.show(this.options);
         console.log("------------------------ ItemTapped: " + args.index);
-        this.medicineNumber = args.index ;
-        this.connect = false
-    }
-
-    openDrawer () {
-        this.sideBar.openDrawer();
+        this.costSelect.numberDate = this.disease[args.index].date ;
+        this.costSelect.name = this.disease[args.index].type ;
+        securityService.setCostSelect = JSON.stringify(this.costSelect);
+        console.log(securityService.getCostSelect);
+        this.router.navigate(["/selectCost"]);
+        this.demoLoader();
     }
 
     ngOnInit(): void {
+        this.costSelect = new costSelect ;
+        this.costSelect.name = "" ;
+        this.costSelect.numberDate = "" ;
+        securityService.setCostSelect = JSON.stringify(this.costSelect);
+        console.log(securityService.getCostSelect);
         this.dataUser = JSON.parse(securityService.getDataUser);
         this.hospitalnumber = this.dataUser.dataset.hn
     }
@@ -110,12 +118,16 @@ export class costComponent implements OnInit {
             });
     }
     toBack () {
+        this.loader.show(this.options);
         console.log("connect");
         this.router.navigate(["/loginProfile"]);
+        this.demoLoader();
     }
 
-    getCost () {
-        this.connect = false ;
-    }
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 1000);
+      }
 
  }

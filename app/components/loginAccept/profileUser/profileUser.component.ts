@@ -89,7 +89,7 @@ export class profileUserComponent implements OnInit {
 
     ngOnInit(): void {
         
-        if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
+        // if (securityService.getDataUser == "") {this.router.navigate(["/security/standbytologin"]);}
         this.dataUser = JSON.parse(securityService.getDataUser);
         console.log(JSON.stringify(this.dataUser.dataset));
         console.log(this.dataUser.dataset.hn)
@@ -98,13 +98,12 @@ export class profileUserComponent implements OnInit {
         this.cid = this.dataUser.dataset.cid
         this.gender = "เพศ " + this.dataUser.dataset.gender
         this.dob = "วันเกิด " + this.dataUser.dataset.dob
-        this.barcode = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=" + this.hospitalnumber + "&code=Code39&multiplebarcodes=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" ;
+        // this.barcode = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=" + this.hospitalnumber + "&code=Code39&multiplebarcodes=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" ;
  
-
-        if (this.dataUser.dataset.blood == null) {
-            this.blood = "เลือด -"
-        }
-        else {this.blood = "เลือด " + this.dataUser.dataset.blood}
+        // if (this.dataUser.dataset.blood == null) {
+        //     this.blood = "เลือด -"
+        // }
+        // else {this.blood = "เลือด " + this.dataUser.dataset.blood}
     }
 
     constructor(
@@ -119,8 +118,17 @@ export class profileUserComponent implements OnInit {
                 console.log("url", s);
             });
     }
-    public toBack(){
+    toBack () {
+        this.loader.show(this.options);
+        console.log("connect");
         this.router.navigate(["/loginProfile"]);
+        this.demoLoader();
     }
+
+    private demoLoader() {
+        setTimeout(() => {
+          this.loader.hide();
+        }, 2000);
+      }
 
  }

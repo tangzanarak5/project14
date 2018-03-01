@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { loginAcceptModule } from "./components/loginAccept/loginAccept.module";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 
 @NgModule({
     bootstrap: [
@@ -20,7 +21,10 @@ import { loginAcceptModule } from "./components/loginAccept/loginAccept.module";
         loginAcceptModule,
         NativeScriptFormsModule,
         HttpModule,
-        NativeScriptHttpModule
+        NativeScriptHttpModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'
+          })
     ],
     declarations: [
         AppComponent,

@@ -17,6 +17,7 @@ import { sideBarComponent } from "../loginProfile/sideBar/sideBar.component";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
 import {Input, ChangeDetectionStrategy} from '@angular/core';
+import { diseases } from "../../security/model/diseases.model"
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -34,11 +35,25 @@ export class medicineComponent implements OnInit {
 
     public myItems: Array<DataItem>;
     private counter: number;
-
+    diseases: diseases ;
     dataUser ;
     hospitalnumber ;
     loader = new LoadingIndicator();
     connect = true ;
+    disease = [
+        {
+            namee : "Diabetes Mellitus",
+            namet : "เบาหวาน"
+        },
+        {
+            namee : "Hypercholesterolemia",
+            namet : "ไขมัน"
+        },
+        {
+            namee : "Hypertension",
+            namet : "ความดันโลหิต"
+        }
+    ] ;
     medicine = [
         {
             namee : "Metformin",
@@ -119,6 +134,10 @@ export class medicineComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.diseases = new diseases ;
+        this.diseases.name = "" ;
+        securityService.setDiseases = JSON.stringify(this.diseases);
+        console.log(securityService.getDiseases);
         this.dataUser = JSON.parse(securityService.getDataUser);
         this.hospitalnumber = this.dataUser.dataset.hn
     }
@@ -139,14 +158,23 @@ export class medicineComponent implements OnInit {
 }
 public onItemTap(args) {
     console.log("------------------------ ItemTapped: " + args.index);
-    this.connect = false
-        this.medicineNumber = args.index ;
-        console.log(this.medicineNumber)
+    this.diseases.name = this.disease[args.index].namet ;
+    securityService.setDiseases = JSON.stringify(this.diseases);
+    console.log(securityService.getDiseases);
+    this.router.navigate(["/medicineSelect"]);
 }
-    toBack () {
-        console.log("connect");
-        this.router.navigate(["/loginProfile"]);
-    }
+toBack () {
+    this.loader.show(this.options);
+    console.log("connect");
+    this.router.navigate(["/loginProfile"]);
+    this.demoLoader();
+}
+
+private demoLoader() {
+    setTimeout(() => {
+      this.loader.hide();
+    }, 2000);
+  }
     getMedicine (number) {
         this.connect = false
         this.medicineNumber = number ;

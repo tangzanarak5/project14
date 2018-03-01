@@ -10,6 +10,7 @@ import { securityService } from "../security.service";
 import { checkHn } from "../model/checkHn.model"
 import { ActivityIndicator } from "ui/activity-indicator";
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "verifyHn",
@@ -56,9 +57,10 @@ export class VerifyHnComponent implements OnInit {
         page: Page,
         private router: Router,
         private route: ActivatedRoute,
-        private verifyHnService: verifyHnService
+        private verifyHnService: verifyHnService,
+        private fonticon: TNSFontIconService
     ) {
-        page.actionBarHidden = true;
+        
         route.url.subscribe((s:UrlSegment[]) => {
             console.log("url", s);
         });

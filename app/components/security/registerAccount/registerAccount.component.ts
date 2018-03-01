@@ -10,6 +10,7 @@ import { checkRegister } from "../model/checkRegister.model"
 import { ActivityIndicator } from "ui/activity-indicator";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "registerAccount",
@@ -148,9 +149,9 @@ export class registerAccountComponent implements OnInit {
     page: Page,
     private router: Router,
     private route: ActivatedRoute,
-    private registerAccountService: registerAccountService
+    private registerAccountService: registerAccountService,
+    private fonticon: TNSFontIconService
 ) {
-    page.actionBarHidden = true;
     route.url.subscribe((s:UrlSegment[]) => {
         console.log("url", s);
     });

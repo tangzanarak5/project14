@@ -5,6 +5,7 @@ import { Page } from "tns-core-modules/ui/page";
 import { securityService } from "../security.service";
 import { user } from "../model/user.model"
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "formRelativeAndMedicalAndSymptomRecord",
@@ -48,8 +49,8 @@ export class formRelativeAndMedicalAndSymptomRecordComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        page: Page
-    ) { page.actionBarHidden = true;}
+        private fonticon: TNSFontIconService
+    ) {}
 
     ngOnInit(): void {
         this.user = new user();

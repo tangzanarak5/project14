@@ -8,6 +8,7 @@ import { securityService } from "../security.service";
 import { checkRegister } from "../model/checkRegister.model"
 import { ActivityIndicator } from "ui/activity-indicator";
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "registerPassword",
@@ -57,8 +58,8 @@ export class registerPasswordComponent implements OnInit {
     page: Page,
     private router: Router,
     private route: ActivatedRoute,
+    private fonticon: TNSFontIconService
 ) {
-    page.actionBarHidden = true;
     route.url.subscribe((s:UrlSegment[]) => {
         console.log("url", s);
     });

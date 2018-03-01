@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA, ViewContainerRef } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { HttpModule } from '@angular/http';
@@ -17,6 +17,13 @@ import { costComponent } from "../loginAccept/cost/cost.component";
 import { medicineComponent } from "../loginAccept/medicine/medicine.component";
 import { appointmentComponent } from "../loginAccept/appointment/appointment.component";
 import { barCodeComponent } from "../loginAccept/loginProfile/barCode.component";
+import { bloodResultSelectComponent } from "./bloodResult/bloodResultSelect/bloodResultSelect.component";
+import { bloodResultSelectTotalComponent } from "./bloodResult/bloodResultSelectTotal/bloodResultSelectTotal.component";
+import { showInfoComponent } from "./bloodResult/bloodResultSelect/showInfo/showInfo.component";
+import { showStandardComponent } from "./bloodResult/bloodResultSelectTotal/showStandard/showStandard.component";
+import { medicineSelectComponent } from "./medicine/medicineSelect/medicineSelect.component";
+import { medicineSelectOneComponent } from "./medicine/medicineSelectOne/medicineSelectOne.component";
+import { selectCostComponent } from "./cost/selectCost/selectCost.component";
 @NgModule({
 
     imports: [
@@ -35,9 +42,16 @@ import { barCodeComponent } from "../loginAccept/loginProfile/barCode.component"
         profileUserComponent,
         bloodResultComponent,
         costComponent,
+        selectCostComponent,
         medicineComponent,
         appointmentComponent,
-        barCodeComponent
+        barCodeComponent,
+        showInfoComponent,
+        showStandardComponent,
+        bloodResultSelectComponent,
+        bloodResultSelectTotalComponent,
+        medicineSelectComponent,
+        medicineSelectOneComponent
     ],
     providers: [
         ModalDialogService,

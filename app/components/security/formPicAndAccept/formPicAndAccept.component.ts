@@ -11,6 +11,7 @@ import { formPicAndAcceptService } from "./formPicAndAccept.service";
 import * as imagepicker from "nativescript-imagepicker";
 import imageSource = require("image-source");
 import {LoadingIndicator} from "nativescript-loading-indicator";
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
     selector: "formPicAndAccept",
@@ -58,8 +59,8 @@ export class formPicAndAcceptComponent implements OnInit {
         private formPicAndAcceptService: formPicAndAcceptService,
         private route: ActivatedRoute,
         private router: Router,
-        page: Page
-    ) { page.actionBarHidden = true;}
+        private fonticon: TNSFontIconService
+    ) {}
 
     ngOnInit(): void {
         this.user = new user() ;
