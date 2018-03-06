@@ -19,6 +19,7 @@ import {Input, ChangeDetectionStrategy} from '@angular/core';
 import * as observableArray from "tns-core-modules/data/observable-array";
 import * as labelModule from "tns-core-modules/ui/label";
 import * as listViewModule from "tns-core-modules/ui/list-view";
+import { meet } from "../../security/model/meet.model"
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -34,6 +35,7 @@ class DataItem {
 
 export class appointmentComponent implements OnInit {
 
+    meet: meet ;
     dataUser ;
     cid ;
     nameAndsurname ;
@@ -43,22 +45,22 @@ export class appointmentComponent implements OnInit {
     blood ;
     appoint1 = true;
     appoint2 = false;
+    appoint3 = false;
     loader = new LoadingIndicator();
    
     public myItems: Array<DataItem>;
     private counter: number;
-    dayapp = "พุธ 14 กุมภาพันธ์ 2561 เวลา 10.30 น." ;
     medicine = [
         {
-            namee : "พฤหัสบดี 15 กุมภาพันธ์ 2561",
+            namee : "พฤหัสบดี 22 มีนาคม 2561",
             namet : "เวลา 09.00 น."
         },
         {
-            namee : "จันทร์ 19 กุมภาพันธ์ 2561",
+            namee : "ศุกร์ 23 มีนาคม 2561",
             namet : "เวลา 10.40 น."
         },
         {
-            namee : "อังคาร 20 กุมภาพันธ์ 2561",
+            namee : "จันทร์ 26 มีนาคม 2561",
             namet : "เวลา 13.15 น."
         }
     ] ;
@@ -88,11 +90,18 @@ export class appointmentComponent implements OnInit {
         }
       };
 
-    @ViewChild('sidebar') sideBar: sideBarComponent
+      @ViewChild('sidebar') sideBar: sideBarComponent
+
+      openDrawer () {
+          this.sideBar.openDrawer();
+      }
 
     ngOnInit(): void {
         
         this.dataUser = JSON.parse(securityService.getDataUser);
+        this.meet = new meet ;
+        this.meet = JSON.parse(securityService.getMeet);
+        console.log(JSON.stringify(this.meet.dateMeet));
         console.log(JSON.stringify(this.dataUser.dataset));
         console.log(this.dataUser.dataset.hn)
         this.nameAndsurname = this.dataUser.dataset.fname + " " + this.dataUser.dataset.lname
@@ -134,6 +143,12 @@ export class appointmentComponent implements OnInit {
     change () {
         this.appoint1 = false;
         this.appoint2 = true;
+        this.appoint3 = false;
+    }
+    change2 () {
+        this.appoint1 = false;
+        this.appoint2 = false;
+        this.appoint3 = true;
     }
 
     public onItemTap2(args) {
@@ -141,15 +156,22 @@ export class appointmentComponent implements OnInit {
         console.log("------------------------ ItemTapped: " + args.index); 
         dialogs.confirm({
             title: "เลื่อนนัดแพทย์",
-            message: "",
+            message: "จาก\n\n" + this.meet.dateMeet + "\n\nไปยัง\n\n" + this.medicine[args.index].namee + " " + this.medicine[args.index].namet,
             cancelButtonText: "ตกลง",
             okButtonText: "ยกเลิก"
         }).then(result => {
+            if (result == true) {
+                this.loader.hide();
+            }
+            else if (result == false) {
+                this.meet.dateMeet = this.medicine[args.index].namee + " " + this.medicine[args.index].namet ;
+                securityService.setMeet = JSON.stringify(this.meet);
+                console.log(securityService.getMeet);
+                this.loader.hide();
+                console.log("Dialog result: " + result);
+                this.loader.show(this.options);
+            }
             // result argument is boolean
-            this.dayapp = this.medicine[args.index].namee + " " + this.medicine[args.index].namet
-            this.loader.hide();
-            console.log("Dialog result: " + result);
-            this.loader.show(this.options);
             if(result == false){
                 dialogs.confirm({
                     title: "เลื่อนนัดแพทย์",
@@ -159,6 +181,7 @@ export class appointmentComponent implements OnInit {
                     // result argument is boolean
                     console.log("Dialog result: " + result);
                     // this.router.navigate(["/loginProfile"]);
+                    this.appoint3 = false ;
                     this.appoint2 = false ;
                     this.appoint1 = true ;
                     this.demoLoader();

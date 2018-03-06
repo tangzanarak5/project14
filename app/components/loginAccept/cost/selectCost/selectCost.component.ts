@@ -45,37 +45,43 @@ export class selectCostComponent implements OnInit {
             date : "27/01/2560",
             type : "ความดันโลหิต",
             name1 : "เจาะเลือด",
-            name2 : "ตรวจไต",
-            name3 : "ค่าตรวจ",
-            name4 : "ค่ายา",
+            name2 : "ตรวจ PE",
+            name3 : "ตรวจ HT",
+            name4 : "ยา",
+            name5 : "ตรวจ Tx",
             data1 : "150", //เจาะเลือด
             data2 : "3000", //ตรวจไต
             data3 : "1000", //ค่าตรวจ
-            data4 : "1000" //ค่ายา
+            data4 : "1000", //ค่ายา
+            data5 : "1000" //ค่ายา
         },
         {
             date : "2/12/2559",
             type : "ไขมัน",
             name1 : "เจาะเลือด",
             name2 : "ตรวจ PS",
-            name3 : "ค่าตรวจ",
-            name4 : "ค่ายา",
+            name3 : "ตรวจ DLD",
+            name4 : "ยา",
+            name5 : "ตรวจ Tx",
             data1 : "150", //เจาะเลือด
             data2 : "2500", //ตรวจ plant sterols
             data3 : "1000", //ค่าตรวจ
-            data4 : "1200" //ค่ายา
+            data4 : "1200", //ค่ายา
+            data5 : "1000" //ค่ายา
         },
         {
             date : "14/5/2559",
             type : "เบาหวาน",
             name1 : "เจาะเลือด",
             name2 : "ตรวจปัสสาวะ",
-            name3 : "ค่าตรวจ",
-            name4 : "ค่ายา",
+            name3 : "ตรวจ DM",
+            name4 : "ยา",
+            name5 : "ตรวจ Pe",
             data1 : "150", //เจาะเลือด
             data2 : "500", //ตรวจปัสสาวะ
             data3 : "1000", //ค่าตรวจ
-            data4 : "1500" //ค่ายา
+            data4 : "1500", //ค่ายา
+            data5 : "1000" //ค่ายา
         },
     ] ;
 
@@ -106,6 +112,10 @@ export class selectCostComponent implements OnInit {
       };
 
     @ViewChild('sidebar') sideBar: sideBarComponent
+
+    openDrawer () {
+        this.sideBar.openDrawer();
+    }
 
     public onItemTap(args) {
         console.log("------------------------ ItemTapped: " + args.index);
@@ -143,8 +153,8 @@ export class selectCostComponent implements OnInit {
         this.demoLoader();
     }
 
-    total (i1, i2, i3, i4) {
-        this.totalMoney = parseInt(i1) + parseInt(i2) + parseInt(i3) + parseInt(i4) ;
+    total (i1, i2, i3, i4, i5) {
+        this.totalMoney = parseInt(i1) + parseInt(i2) + parseInt(i3) + parseInt(i4) + parseInt(i5) ;
         return true ;
     }
 

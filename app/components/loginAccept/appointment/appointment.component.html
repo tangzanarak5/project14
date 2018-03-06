@@ -1,14 +1,27 @@
+<sidebar #sidebar></sidebar>
 <ActionBar class="bg">
         <StackLayout>
-                <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
-                        <Label row="0" col="0" class="mdi" [text]="'mdi-arrow-back' | fonticon" (tap) = "toBack()"></Label>
-                        <label row="0" col="1" class="setCenter w Cloud-Lights" text="หมายนัด"></label>
+                <GridLayout width="100%" height="100%">
+                        <Label horizontalAlignment="right" class="mdi rights" [text]="'mdi-menu' | fonticon" (tap) = "openDrawer()"></Label>
+                        <Label horizontalAlignment="left" class="mdi" [text]="'mdi-arrow-back' | fonticon" (tap) = "toBack()"></Label>
+                        <label horizontalAlignment="center" class="setCenter w Cloud-Lights" text="หมายนัด"></label>
                 </GridLayout>
         </StackLayout>
 </ActionBar>
 
 <ScrollView sdkExampleTitle sdkToggleNavButton>
 <StackLayout *ngIf = "appoint1">
+        <GridLayout columns = "10, 70, *, *" rows = "15, 25, 25, 30" width="100%" height="100%">
+                <label row = "0" col = "0" class = "bdb" text = ""></label>
+                <Label row = "1" col = "1" rowSpan="3" class = "mdis setCenter" [text]="'mdi-event-note' | fonticon" (tap) = "change()"></Label>
+                <Label row = "3" col = "1" class = "Cloud-Light setCenter bdb" text="ลายละเอียด" (tap) = "change2()"></Label>
+                <Label row = "1" col = "2" colSpan="2" class="Cloud-Light black lefts" [text]="meet.dateMeet"></Label>
+                <Label row = "2" col = "2" class = "Cloud-Light black lefts" text="แผนกอายุรกรรม"></Label>
+                <Label row = "3" col = "2" class = "Cloud-Light black lefts bdb" text="( ตรวจ )"></Label>
+                <label row = "3" col = "3" class = "bdb" text=""></label>
+        </GridLayout>
+</StackLayout>
+<StackLayout *ngIf = "appoint2">
         <GridLayout columns="15, 60, *, 15" rows="20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25, 20, 25" width="100%" height="80%">
                 <label row="1" col="0" text=""></label>
                 <label row="1" col="3" class="bdb" text=""></label>
@@ -43,7 +56,7 @@
                 <label row="12" col="0" text=""></label>
                 <label row="13" col="3" class="bdb" text=""></label>
                 <Label row="13" col="1" class = "black Cloud-Light4 bdb" text="วัน-เวลา"></Label>
-                <Label row="13" col="2" class="Cloud-Light right bdb" [text]="dayapp"></Label>
+                <Label row="13" col="2" class="Cloud-Light right bdb" [text]="meet.dateMeet"></Label>
 
                 <label row="14" col="0" text=""></label>
                 <label row="15" col="3" class="bdb" text=""></label>
@@ -57,11 +70,11 @@
         
         </GridLayout>
  
-<button class="sizeLogin Cloud-Light4" style="color :white" text="เลื่อนนัด" (tap)="change()"></button>>
+<button class="sizeLogin Cloud-Light4" style = "color :white" text = "เลื่อนนัด" (tap) = "change2()"></button>>
 </StackLayout>
 </ScrollView>
 
-<StackLayout *ngIf = "appoint2" (tap)="confirmAppointment()">
+<StackLayout *ngIf = "appoint3" (tap)="confirmAppointment()">
         <ListView [items]="medicine" (itemTap)="onItemTap2($event)">
                 <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                         <StackLayout class="mtop" [class.odd]="odd" [class.even]="even">

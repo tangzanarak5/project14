@@ -23,6 +23,7 @@ import { selectBloodResult } from "../../../security/model/selectBloodResult.mod
 import { info } from "../../../security/model/info.model"
 import { showInfoComponent } from "./showInfo/showInfo.component";
 import * as datePickerModule from "tns-core-modules/ui/date-picker";
+import { sideBarComponent } from "../../loginProfile/sideBar/sideBar.component";
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -109,6 +110,12 @@ export class bloodResultSelectComponent implements OnInit {
           hideBezel: true, // default false, can hide the surrounding bezel
         }
       };
+
+      @ViewChild('sidebar') sideBar: sideBarComponent
+
+      openDrawer () {
+          this.sideBar.openDrawer();
+      }
     
     ngOnInit(): void {
         this.selectBloodResult = new selectBloodResult ;

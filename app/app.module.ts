@@ -9,6 +9,7 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { loginAcceptModule } from "./components/loginAccept/loginAccept.module";
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
+import {CarouselDirective} from "nativescript-ng2-carousel/nativescript-ng2-carousel";
 
 @NgModule({
     bootstrap: [
@@ -28,6 +29,7 @@ import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
     ],
     declarations: [
         AppComponent,
+        CarouselDirective
     ],
     providers: [
         ModalDialogService

@@ -18,6 +18,7 @@ import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {LoadingIndicator} from "nativescript-loading-indicator";
 import { barCodeComponent } from "../loginProfile/barCode.component";
 import * as datePickerModule from "tns-core-modules/ui/date-picker";
+
 @Component({
     selector: "loginProfile",
     templateUrl: "loginProfile.component.html",

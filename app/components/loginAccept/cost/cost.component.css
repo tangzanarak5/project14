@@ -124,7 +124,7 @@ titleMargin {
 }
 .mdi {
     font-family: "Material Icons", "MaterialIcons-Regular";
-    font-size: 36px;
+    font-size: 24px;
     color: white;
   }
   .opa {
@@ -196,6 +196,6 @@ titleMargin {
 .w {
     color: white;
 }
-.right {
-    text-align: right;
+.rights {
+    margin-right: 5%
 }

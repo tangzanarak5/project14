@@ -88,10 +88,14 @@ export class bloodResultComponent implements OnInit {
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
+    openDrawer () {
+        this.sideBar.openDrawer();
+    }
+
     public onItemTap(args) {
         console.log("------------------------ ItemTapped: " + args.index);
         this.selectBlood.numberIndex = args.index ;
-        this.selectBlood.name = this.disease[args.index].namee + " ( " + this.disease[args.index].namet + " )" ;
+        this.selectBlood.name = this.disease[args.index].namet ;
         securityService.setSelectBlood = JSON.stringify(this.selectBlood);
         // this.selectBlood = JSON.parse(securityService.getSelectBlood);
         console.log(securityService.getSelectBlood);

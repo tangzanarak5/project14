@@ -122,7 +122,6 @@ titleMargin {
 .mdi {
     font-family: "Material Icons", "MaterialIcons-Regular";
     font-size: 36px;
-    color: lightgray;
   }
   .bdt{
     border-top-width: 1px;
@@ -137,4 +136,7 @@ titleMargin {
 }
 .odd {
     color: red;
+}
+.even{
+    color: black;
 }

@@ -24,6 +24,8 @@ import { showStandardComponent } from "./bloodResult/bloodResultSelectTotal/show
 import { medicineSelectComponent } from "./medicine/medicineSelect/medicineSelect.component";
 import { medicineSelectOneComponent } from "./medicine/medicineSelectOne/medicineSelectOne.component";
 import { selectCostComponent } from "./cost/selectCost/selectCost.component";
+import { bloodChartComponent } from "./bloodResult/bloodChart/bloodChart.component";
+
 @NgModule({
 
     imports: [
@@ -51,7 +53,8 @@ import { selectCostComponent } from "./cost/selectCost/selectCost.component";
         bloodResultSelectComponent,
         bloodResultSelectTotalComponent,
         medicineSelectComponent,
-        medicineSelectOneComponent
+        medicineSelectOneComponent,
+        bloodChartComponent
     ],
     providers: [
         ModalDialogService,

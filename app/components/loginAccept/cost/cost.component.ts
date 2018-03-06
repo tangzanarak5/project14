@@ -83,6 +83,10 @@ export class costComponent implements OnInit {
 
     @ViewChild('sidebar') sideBar: sideBarComponent
 
+    openDrawer () {
+        this.sideBar.openDrawer();
+    }
+
     public onItemTap(args) {
         this.loader.show(this.options);
         console.log("------------------------ ItemTapped: " + args.index);

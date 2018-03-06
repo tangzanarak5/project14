@@ -5,6 +5,7 @@ import { securityService } from "../../security/security.service";
 @Component({
     selector: "my-modal",
     templateUrl: "barCode.component.html",
+    styleUrls: ['barCode.component.css'],
     moduleId: module.id
 })
 export class barCodeComponent {

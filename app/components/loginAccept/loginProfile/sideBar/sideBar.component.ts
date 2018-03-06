@@ -42,39 +42,48 @@ export class sideBarComponent implements AfterViewInit, OnInit {
     menu = [
         {
             name : "หน้าแรก",
-            icon : "home"
+            icon : "home",
+            color : "lightgray"
         },
         {
             name : "ประวัติส่วนตัว",
-            icon : "assignment"
+            icon : "assignment",
+            color : "lightgray"
         },
         {
             name : "ผลเลือด",
-            icon : "favorite"
+            icon : "favorite",
+            color : "lightgray"
         },
         {
             name : "ยาและวิธีการรับประทาน",
-            icon : "local_hospital"
+            icon : "local_hospital",
+            color : "lightgray"
         },
         {
             name : "ค่าใช้จ่าย",
-            icon : "attach_money"
+            icon : "attach_money",
+            color : "lightgray"
         },
         {
             name : "นัดแพทย์",
-            icon : "update"
+            icon : "event_note",
+            color : "lightgray"
         },
         {
             name : "ข่าวสารและคำแนะนำการรักษา",
-            icon : "import_contacts"
+            icon : "import_contacts",
+            color : "lightgray"
         },
         {
             name : "เว็บไซต์",
-            icon : "web"
+            icon : "web",
+            color : "lightgray"
         },
         {
             name : "ออกจากระบบ",
-            icon : "exit_to_app"
+            icon : "exit_to_app",
+            color : "lightgray"
         }
     ] ;
 
@@ -122,6 +131,7 @@ export class sideBarComponent implements AfterViewInit, OnInit {
 
     onSetupItemView(args: SetupItemViewArgs) {
         args.view.context.odd = (args.index === 8);
+        args.view.context.even = (args.index !== 8);
     }
     public onItemTap(args) {
         console.log("ItemTapped: " + args.index);

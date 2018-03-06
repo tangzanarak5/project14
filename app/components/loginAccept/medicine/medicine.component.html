@@ -1,9 +1,10 @@
 <sidebar #sidebar></sidebar>
 <ActionBar class="bg">
         <StackLayout>
-                <GridLayout columns="auto, *" rows="30" width="100%" height="100%">
-                        <Label row="0" col="0" class="mdi" [text]="'mdi-arrow-back' | fonticon" (tap) = "toBack()"></Label>
-                        <label row="0" col="1" class="setCenter w Cloud-Lights" text="ยาและวิธีการใช้"></label>
+                <GridLayout width="100%" height="100%">
+                        <Label horizontalAlignment="right" class="mdi rights" [text]="'mdi-menu' | fonticon" (tap) = "openDrawer()"></Label>
+                        <Label horizontalAlignment="left" class="mdi" [text]="'mdi-arrow-back' | fonticon" (tap) = "toBack()"></Label>
+                        <label horizontalAlignment="center" class="setCenter w Cloud-Lights" text="ยาและวิธีการใช้"></label>
                 </GridLayout>
         </StackLayout>
 </ActionBar>

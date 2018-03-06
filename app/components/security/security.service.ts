@@ -110,4 +110,12 @@ export class securityService {
     return getString("costSelect");
   }
 
+  static set setMeet(meetJson: string){
+    setString("meet",meetJson);
+  }
+  
+  static get getMeet(): string {
+    return getString("meet");
+  }
+
 }

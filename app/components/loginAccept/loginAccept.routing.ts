@@ -17,6 +17,7 @@ import { showStandardComponent } from "./bloodResult/bloodResultSelectTotal/show
 import { medicineSelectComponent } from "./medicine/medicineSelect/medicineSelect.component";
 import { medicineSelectOneComponent } from "./medicine/medicineSelectOne/medicineSelectOne.component";
 import { selectCostComponent } from "./cost/selectCost/selectCost.component";
+import { bloodChartComponent } from "./bloodResult/bloodChart/bloodChart.component";
 
 const routes: Routes = [
     { path: "loginAccept", 
@@ -79,6 +80,10 @@ const routes: Routes = [
     {
         path: 'medicineSelectOne',
         component: medicineSelectOneComponent
+    },
+    {
+        path: 'bloodChart',
+        component: bloodChartComponent
     }
 
 

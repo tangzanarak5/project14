@@ -21,6 +21,8 @@ import {Input, ChangeDetectionStrategy} from '@angular/core';
 import { selectBloodResult } from "../../../security/model/selectBloodResult.model"
 import { standard } from "../../../security/model/standard.model"
 import { showStandardComponent } from "./showStandard/showStandard.component";
+import * as dockModule from "tns-core-modules/ui/layouts/dock-layout";
+import { sideBarComponent } from "../../loginProfile/sideBar/sideBar.component";
 
 class DataItem {
     constructor(public id: number, public name: string) { }
@@ -44,37 +46,37 @@ export class bloodResultSelectTotalComponent implements OnInit {
     unit = "" ;
     resultFBS = [
         {
-            date : "28/05/2561",
+            date : "28/01/2561",
             dataResult : "100",
             count : "7"
         },
         {
-            date : "28/04/2561",
+            date : "20/011/2560",
             dataResult : "110",
             count : "6"
         },
         {
-            date : "28/03/2561",
+            date : "18/09/2560",
             dataResult : "115",
             count : "5"
         },
         {
-            date : "05/03/2561",
+            date : "05/07/2560",
             dataResult : "120",
             count : "4"
         },
         {
-            date : "26/02/2561",
+            date : "26/05/2560",
             dataResult : "125",
             count : "3"
         },
         {
-            date : "2/12/2560",
+            date : "02/03/2560",
             dataResult : "135",
             count : "2"
         },
         {
-            date : "14/05/2560",
+            date : "14/01/2560",
             dataResult : "140",
             count : "1"
         }
@@ -107,7 +109,7 @@ export class bloodResultSelectTotalComponent implements OnInit {
             count : "3"
         },
         {
-            date : "2/12/2560",
+            date : "02/12/2560",
             dataResult : "7",
             count : "2"
         },
@@ -289,6 +291,12 @@ export class bloodResultSelectTotalComponent implements OnInit {
           hideBezel: true, // default false, can hide the surrounding bezel
         }
       };
+
+      @ViewChild('sidebar') sideBar: sideBarComponent
+
+      openDrawer () {
+          this.sideBar.openDrawer();
+      }
    
     ngOnInit(): void {
         this.selectBloodResult = JSON.parse(securityService.getSelectBloodResult);
@@ -352,6 +360,10 @@ export class bloodResultSelectTotalComponent implements OnInit {
         };
         this.modal.showModal(showStandardComponent, options).then(res => {
         });
+    }
+    toBloodChart () {
+        console.log("connect");
+        this.router.navigate(["/bloodChart"]);
     }
     checkBloodResult (i) {
 // ***********************************************************************************************************
