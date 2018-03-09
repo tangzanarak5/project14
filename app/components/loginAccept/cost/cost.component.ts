@@ -42,15 +42,15 @@ export class costComponent implements OnInit {
     connect = true ;
     disease = [
         {
-            date : "27/01/2560",
+            date : "28/03/2561",
             type : "ความดันโลหิต"
         },
         {
-            date : "2/12/2559",
+            date : "28/06/2560",
             type : "ไขมัน"
         },
         {
-            date : "14/5/2559",
+            date : "28/01/2561",
             type : "เบาหวาน"
         },
     ] ;
